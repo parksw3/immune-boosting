@@ -89,6 +89,7 @@ out3a <- out3 %>%
 
 g4 <- ggplot(out1a) +
   geom_area(aes(time, value*100, fill=key)) +
+  geom_hline(yintercept=tail(out1$Ru+out1$V+out1$Rv, 1)*100, lty=2, lwd=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0),
                      breaks=0:7*20) +
   scale_y_continuous("Seropositive (\\%)", limits=c(0, 1)*100, expand=c(0, 0)) +
@@ -105,6 +106,7 @@ g4 <- ggplot(out1a) +
 
 g5 <- ggplot(out2a) +
   geom_area(aes(time, value*100, fill=key)) +
+  geom_hline(yintercept=tail(out2$Ru+out2$V+out2$Rv, 1)*100, lty=2, lwd=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0),
                      breaks=0:7*20) +
   scale_y_continuous("Seropositive (\\%)", limits=c(0, 1)*100, expand=c(0, 0)) +
@@ -120,6 +122,7 @@ g5 <- ggplot(out2a) +
 
 g6 <- ggplot(out3a) +
   geom_area(aes(time, value*100, fill=key)) +
+  geom_hline(yintercept=tail(out3$Ru+out3$Rv, 1)*100, lty=2, lwd=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0),
                      breaks=0:7*20) +
   scale_y_continuous("Seropositive (\\%)", limits=c(0, 1)*100, expand=c(0, 0)) +
@@ -133,16 +136,16 @@ g6 <- ggplot(out3a) +
     panel.border = element_blank()
   )
 
-gtot1 <- ggpubr::ggarrange(g1, g4, nrow=2)
+gtot1 <- egg::ggarrange(g1, g4, nrow=2, draw=FALSE)
 gtot1a <- annotate_figure(gtot1, top=text_grob("Standard vaccination model", size=14))
 
-gtot2 <- ggpubr::ggarrange(g2, g5, nrow=2)
+gtot2 <- egg::ggarrange(g2, g5, nrow=2, draw=FALSE)
 gtot2a <- annotate_figure(gtot2, top=text_grob("Immune boosting model", size=14))
 
-gtot3 <- ggpubr::ggarrange(g3, g6, nrow=2)
+gtot3 <- egg::ggarrange(g3, g6, nrow=2, draw=FALSE)
 gtot3a <- annotate_figure(gtot3, top=text_grob("Polarized vaccination model", size=14))
 
-tikz(file = "figure_simulation_generalized.tex", width = 12, height = 5, standAlone = T)
+tikz(file = "figure_simulation_generalized.tex", width = 12, height = 6, standAlone = T)
 grid.arrange(gtot1a, gtot2a, gtot3a, ncol=3)
 dev.off()
 tools::texi2dvi('figure_simulation_generalized.tex', pdf = T, clean = T)

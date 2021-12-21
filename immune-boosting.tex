@@ -87,7 +87,7 @@
 \begin{flushleft}{
 	\Large
 	\textbf\newline{
-		Immune boosting
+		Immune boosting bridges leaky vaccine and polarized vaccine models
 	}
 }
 \newline
@@ -108,6 +108,13 @@ First, we illustrate that the difference between the standard (``leaky'') immuni
 
 
 \section{Mathematical models of vaccine-induced immunity}
+
+\begin{figure}[!tp]
+\includegraphics[width=\textwidth]{figure_diagram_comb.pdf}
+\caption{
+\textbf{A schematic diagram of vaccine models}
+}
+\end{figure}
 
 First, we begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $p$:
 \begin{align}
@@ -155,8 +162,24 @@ We note that this equivalence does not hold when immunity wanes as we show later
 
 While both models predict equivalent epidemic dynamics, they differ in their serological dynamics.
 
-Finally, we present a generalized vaccination 
+Finally, we present a generalized vaccination model that encompasses all three models:
+\begin{align}
+\frac{\dd S}{\dd t} &= - \lambda(t) S - \rho S \\
+\frac{\dd I_u}{\dd t} &= \lambda(t) S - \gamma_u I_u \\
+\frac{\dd R_u}{\dd t} &= \gamma_u I_u \\
+\frac{\dd V}{\dd t} &= - \lambda(t) V + \rho S \\
+\frac{\dd I_v}{\dd t} &= p \lambda(t) V - \gamma_v I_v \\
+\frac{\dd R_v}{\dd t} &= (1-p) \lambda(t) V + \gamma_v I_v
+\end{align}
 
+
+
+\begin{figure}[!tp]
+\includegraphics[width=\textwidth]{figure_simulation_generalized.pdf}
+\caption{
+\textbf{A schematic diagram of vaccine models}
+}
+\end{figure}
 
  
 

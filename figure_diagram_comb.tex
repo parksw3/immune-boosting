@@ -51,13 +51,13 @@
     \path[->] (V3) edge node [above] {$p \lambda(t)$} (Iv3);
     \path[->] (Iv3) edge node [above] {$\gamma_v$} (Rv3);
     \path[->] (V3) edge [out=-60, in=-120] node [below] {$(1-p) \lambda(t)$} (Rv3);
-    \node [int, above right=2.5cm of Rs2, fill=colorV, fill opacity=1, text opacity=1, rectangle] (V4)             {$V$};
+    \node [int, above right=2.5cm of Rs2, fill=colorV, fill opacity=1, text opacity=1] (V4)             {$V$};
     \node [int, above=of V4, fill=colorS, fill opacity=1, text opacity=1] (S4)             {$S$};
     \node [int, right=of S4, fill=colorIu] (Is4)             {$I_u$};
     \node [int, right=of Is4, fill=colorRu, fill opacity=1, text opacity=1] (Rs4)             {$R_u$};
     \path[->] (S4) edge node [above] {$\lambda(t)$} (Is4);
     \path[->] (Is4) edge node [above] {$\gamma_u$} (Rs4);
-    \node [int, right=of V4, fill=colorIv, rectangle] (Iv4)             {$I_v$};
+    \node [int, right=of V4, fill=colorIv] (Iv4)             {$I_v$};
     \node [int, right=of Iv4, fill=colorRv, fill opacity=1, text opacity=1] (Rv4)             {$R_v$};
     \path[->] (S4) edge node [left] {$p \rho$} (V4);
     \path[->] (S4) edge node [sloped, below] {$(1-p) \rho$} (Rv4);
