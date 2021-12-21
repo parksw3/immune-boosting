@@ -5,6 +5,10 @@ library(ggplot2); theme_set(theme_bw())
 library(ggpubr)
 library(gridExtra)
 library(tikzDevice)
+
+## sessionInfo()
+## quit()
+
 source("simulate.R")
 source("color_palette.R")
 

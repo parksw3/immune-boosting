@@ -11,6 +11,8 @@ vim_session:
 
 ######################################################################
 
+Sources += $(wildcard *.R)
+
 autowrapR = defined
 
 ## immune_boosting.pdf: immune_boosting.tex
