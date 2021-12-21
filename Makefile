@@ -17,6 +17,8 @@ autowrapR = defined
 
 ## immune_boosting.pdf: immune_boosting.tex
 
+Ignore += figure_simulation_generalized.tex
+figure_simulation_generalized.tex: figure_simulation_compare.Rout ;
 figure_simulation_generalized.pdf: figure_simulation_compare.Rout ;
 
 figure_simulation_compare.Rout: figure_simulation_compare.R
