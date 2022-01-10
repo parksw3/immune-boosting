@@ -10,16 +10,22 @@ source("color_palette.R")
 
 viridis::viridis(4, begin=0.1, alpha=0.4)
 
-out1 <- simulate_model_generalized(R0=2.5, rho=0.04/7, p=0.4, theta=1, q=0)
-out2 <- simulate_model_generalized(R0=2.5, rho=0.04/7, p=0.4, theta=1)
-out3 <- simulate_model_generalized(R0=2.5, rho=0.04/7, p=0.4, theta=0.4)
+S0 <- 0.5
+R0 <- 2.5
+p <- 0.4
+
+out1 <- simulate_model_generalized(R0=R0, rho=0, p=p, theta=1, q=0,
+                                   S0=S0-1e-6, V0=(1-S0)) ## leaky
+out2 <- simulate_model_generalized(R0=R0, rho=0, p=p, theta=1,
+                                   S0=S0-1e-6, V0=(1-S0)) ## boosting
+out3 <- simulate_model_generalized(R0=R0, rho=0, p=0.4, theta=0.4,
+                                   S0=S0-1e-6, V0=(1-S0) * p, Rv0=(1-S0) * (1-p)) ## polarized vaccination
 
 g1 <- ggplot(out1) +
   geom_line(aes(time, Iu*100, col="$I_u$", lty="$I_u$"), lwd=2) +
   geom_line(aes(time, Iv*100, col="$I_v$", lty="$I_v$"), lwd=2) +
   scale_y_log10("Infected (\\%)", limits=c(1e-6, 0.2)*100, expand=c(0, 0)) +
-  scale_x_continuous("Time (days)", expand=c(0, 0),
-                     breaks=0:7*20) +
+  scale_x_continuous("Time (days)", expand=c(0, 0)) +
   scale_color_manual("", values=c(cpalette[6], cpalette[2])) +
   scale_linetype_manual("", values=c(1, 2)) +
   ggtitle("A") +
@@ -35,8 +41,7 @@ g2 <- ggplot(out2) +
   geom_line(aes(time, Iu*100, col="$I_u$", lty="$I_u$"), lwd=2) +
   geom_line(aes(time, Iv*100, col="$I_v$", lty="$I_v$"), lwd=2) +
   scale_y_log10("Infected (\\%)", limits=c(1e-6, 0.2)*100, expand=c(0, 0)) +
-  scale_x_continuous("Time (days)", expand=c(0, 0),
-                     breaks=0:7*20) +
+  scale_x_continuous("Time (days)", expand=c(0, 0)) +
   scale_color_manual("", values=c(cpalette[6], cpalette[2])) +
   scale_linetype_manual("", values=c(1, 2)) +
   ggtitle("B") +
@@ -51,8 +56,7 @@ g3 <- ggplot(out3) +
   geom_line(aes(time, Iu*100, col="$I_u$", lty="$I_u$"), lwd=2) +
   geom_line(aes(time, Iv*100, col="$I_v$", lty="$I_v$"), lwd=2) +
   scale_y_log10("Infected (\\%)", limits=c(1e-6, 0.2)*100, expand=c(0, 0)) +
-  scale_x_continuous("Time (days)", expand=c(0, 0),
-                     breaks=0:7*20) +
+  scale_x_continuous("Time (days)", expand=c(0, 0)) +
   scale_color_manual("", values=c(cpalette[6], cpalette[2])) +
   scale_linetype_manual("", values=c(1, 2)) +
   ggtitle("C") +
@@ -98,7 +102,7 @@ g4 <- ggplot(out1a) +
   theme(
     panel.grid = element_blank(),
     legend.title = element_blank(),
-    legend.position = c(0.15, 0.60),
+    legend.position = c(0.15, 0.70),
     legend.background = element_rect(fill=NA),
     axis.line = element_line(size=1),
     panel.border = element_blank()
@@ -137,7 +141,7 @@ g6 <- ggplot(out3a) +
   )
 
 gtot1 <- egg::ggarrange(g1, g4, nrow=2, draw=FALSE)
-gtot1a <- annotate_figure(gtot1, top=text_grob("Standard vaccination model", size=14))
+gtot1a <- annotate_figure(gtot1, top=text_grob("Leaky vaccination model", size=14))
 
 gtot2 <- egg::ggarrange(g2, g5, nrow=2, draw=FALSE)
 gtot2a <- annotate_figure(gtot2, top=text_grob("Immune boosting model", size=14))
@@ -145,7 +149,7 @@ gtot2a <- annotate_figure(gtot2, top=text_grob("Immune boosting model", size=14)
 gtot3 <- egg::ggarrange(g3, g6, nrow=2, draw=FALSE)
 gtot3a <- annotate_figure(gtot3, top=text_grob("Polarized vaccination model", size=14))
 
-tikz(file = "figure_simulation_generalized.tex", width = 12, height = 6, standAlone = T)
+tikz(file = "figure_simulation_compare.tex", width = 12, height = 6, standAlone = T)
 grid.arrange(gtot1a, gtot2a, gtot3a, ncol=3)
 dev.off()
-tools::texi2dvi('figure_simulation_generalized.tex', pdf = T, clean = T)
+tools::texi2dvi('figure_simulation_compare.tex', pdf = T, clean = T)
