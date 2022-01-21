@@ -28,6 +28,12 @@ figure_simulation_compare.Rout: figure_simulation_compare.R
 
 figure_simulation_effectiveness.pdf: figure_simulation_effectiveness.Rout ;
 
+######################################################################
+
+## Haven't tracked this logic yet
+
+Ignore += figure_simulation_compare.tex figure_simulation_effectiveness.tex figure_simulation_generalized_unvaccinated.tex figure_simulation_generalized_vaccinated.tex
+Ignore += *.deps.out
 
 ######################################################################
 
