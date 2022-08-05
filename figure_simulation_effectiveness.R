@@ -12,7 +12,7 @@ viridis::viridis(4, begin=0.1, alpha=0.4)
 
 S0 <- 0.5
 
-R0vec <- c(2.5, 4, 8)
+R0vec <- c(2.5)
 pvec <- c(0.4)
 qvec <- c(0, 1/3, 2/3, 1)
 thetavec <- c(1, 2, 3) ## theta = p, theta = sqrt(p), theta=1
@@ -40,8 +40,7 @@ for (i in 1:nrow(allparam)) {
     theta=pp[[3]],
     R0=pp[[4]],
     cumulative=1-out$Cv/(1-S0)/(out$Cu/(S0)),
-    hazard=1-out$inc_v/(1-S0-out$Cv)/(out$inc_s/out$S),
-    prevalence=1-(out$Iv/(1-S0-out$Iv))/(out$Iu/(S0-out$Iu))
+    hazard=1-out$inc_v/(1-S0-out$Cv)/(out$inc_s/out$S)
   )
 }
 
@@ -57,7 +56,7 @@ resdata <- reslist %>%
   )
 
 g1 <- ggplot(resdata) +
-  geom_line(aes(time, cumulative*100, col=q), lwd=1) +
+  geom_line(aes(time, cumulative*100, col=q), lwd=2) +
   geom_hline(yintercept=60, lty=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
   scale_y_continuous("Estimated vaccine effectiveness (\\%)", limits=c(0, 100), expand=c(0, 0)) +
@@ -70,7 +69,7 @@ g1 <- ggplot(resdata) +
   )
 
 g2 <- ggplot(resdata) +
-  geom_line(aes(time, hazard*100, col=q), lwd=1) +
+  geom_line(aes(time, hazard*100, col=q), lwd=2) +
   geom_hline(yintercept=60, lty=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
   scale_y_continuous("Estimated vaccine effectiveness (\\%)", limits=c(0, 100), expand=c(0, 0)) +
@@ -81,19 +80,7 @@ g2 <- ggplot(resdata) +
     panel.grid = element_blank()
   )
 
-g3 <- ggplot(resdata) +
-  geom_line(aes(time, prevalence*100, col=q), lwd=1) +
-  geom_hline(yintercept=60, lty=2) +
-  scale_x_continuous("Time (days)", expand=c(0, 0)) +
-  scale_y_continuous("Estimated vaccine effectiveness (\\%)", limits=c(0, 100), expand=c(0, 0)) +
-  facet_grid(~theta) +
-  ggtitle("C. Prevalence-odds-ratio-based estimates") +
-  scale_color_viridis_d("Proportion of challenges boosted, $q$") +
-  theme(
-    panel.grid = element_blank()
-  )
-
-tikz(file = "figure_simulation_effectiveness.tex", width = 8, height = 8, standAlone = T)
-ggarrange(g1, g2, g3, nrow=3, common.legend = TRUE)
+tikz(file = "figure_simulation_effectiveness.tex", width = 8, height = 6, standAlone = T)
+ggarrange(g1, g2, nrow=2, common.legend = TRUE)
 dev.off()
 tools::texi2dvi('figure_simulation_effectiveness.tex', pdf = T, clean = T)

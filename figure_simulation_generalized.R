@@ -58,7 +58,7 @@ g1 <- ggplot(resdata) +
   scale_x_continuous("Vaccine efficacy, $1-p$", limits=c(0, 1),
                      breaks=c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
   scale_y_continuous("Proportion infected", limits=c(0, 1)) +
-  scale_color_viridis_d("Proportion of challenges boosted, $q$") +
+  scale_color_viridis_d("Proportion of unsuccessful challenges boosted, $q$") +
   facet_grid(R0~theta) +
   theme(
     legend.position = "top",
@@ -70,7 +70,7 @@ g2 <- ggplot(resdata) +
   scale_x_continuous("Vaccine efficacy, $1-p$", limits=c(0, 1),
                      breaks=c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
   scale_y_continuous("Proportion infected", limits=c(0, 1)) +
-  scale_color_viridis_d("Proportion of challenges boosted, $q$") +
+  scale_color_viridis_d("Proportion of unsuccessful challenges boosted, $q$") +
   facet_grid(R0~theta) +
   theme(
     legend.position = "none",
