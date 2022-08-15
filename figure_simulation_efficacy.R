@@ -59,8 +59,8 @@ g1 <- ggplot(resdata) +
   geom_line(aes(time, cumulative*100, col=q), lwd=2) +
   geom_hline(yintercept=60, lty=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
-  scale_y_continuous("Estimated vaccine effectiveness (\\%)", limits=c(0, 100), expand=c(0, 0)) +
-  scale_color_viridis_d("Proportion of challenges boosted, $q$") +
+  scale_y_continuous("Estimated vaccine effecticacy (\\%)", limits=c(0, 100), expand=c(0, 0)) +
+  scale_color_viridis_d("Proportion of unsuccessful challenges boosted, $q$") +
   facet_grid(~theta) +
   ggtitle("A. Cumulative-incidence-based estimates") +
   theme(
@@ -72,7 +72,7 @@ g2 <- ggplot(resdata) +
   geom_line(aes(time, hazard*100, col=q), lwd=2) +
   geom_hline(yintercept=60, lty=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
-  scale_y_continuous("Estimated vaccine effectiveness (\\%)", limits=c(0, 100), expand=c(0, 0)) +
+  scale_y_continuous("Estimated vaccine effecticacy (\\%)", limits=c(0, 100), expand=c(0, 0)) +
   facet_grid(~theta) +
   ggtitle("B. Hazard-based estimates") +
   scale_color_viridis_d("Proportion of challenges boosted, $q$") +
@@ -80,7 +80,7 @@ g2 <- ggplot(resdata) +
     panel.grid = element_blank()
   )
 
-tikz(file = "figure_simulation_effectiveness.tex", width = 8, height = 6, standAlone = T)
+tikz(file = "figure_simulation_efficacy.tex", width = 8, height = 6, standAlone = T)
 ggarrange(g1, g2, nrow=2, common.legend = TRUE)
 dev.off()
-tools::texi2dvi('figure_simulation_effectiveness.tex', pdf = T, clean = T)
+tools::texi2dvi('figure_simulation_efficacy.tex', pdf = T, clean = T)
