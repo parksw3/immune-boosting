@@ -265,7 +265,7 @@ So how do we accurately estimate, or even define, vaccine efficacy?
 
 Here, we compare two ways of estimating vaccine efficacy: the ratios of cumulative incidence and instantaneous hazard.
 The cumulative incidence refers to the cumulative proportion of infections among unvaccinated and vaccinated individuals; 
-this is typically used for measuring the vaccine effectiveness from real-life outbreaks.
+this is typically used for measuring the vaccine effectiveness from real-life outbreaks \citep{farrington1993estimation}.
 To calculate the cumulative-incidence-based estimates of vaccine efficacy from our general model, we add two additional compartments, which keep track of cumulative incidence among unvaccinated $C_u$ and vaccinated $C_v$ individuals:
 \begin{align}
 \frac{\dd C_u}{\dd t} &= \lambda S_u\\
@@ -335,7 +335,6 @@ a such assumption causes the leaky vaccination model to always predict a larger 
 The differences in their epidemic dynamics can be understood by immune boosting: vaccinated individuals can attain protection without developing a transmissible infection, and therefore their infections are no longer independent of their previous exposures.
 In particular, the immune boosting model predicts identical epidemic dynamics as the polarized vaccination model because the number of individuals who develop complete protection from polarization is equal to to the number of individuals who are boosted through exposure.
 
-
 We also present a generalized vaccination model, which captures the dynamics of all three models.
 Even though immune boosting and polarized vaccination models predict the same epidemic dynamics, they have different serological dynamics---these differences can be bridged by the generalized vaccination model.
 The generalized vaccination model includes two additional parameters, which determine the amount of immune boosting and the proportion of individuals that remain partially susceptible after vaccination (rather than fully protected).
@@ -343,14 +342,14 @@ Using the generalized vaccination model, we show that the epidemic dynamics are 
 
 Previous studies have tried to understand the differences between leaky and polarized vaccination models using arguments based on heterogeneity in susceptibility.
 For example, leaky vaccination represents one extreme in which everyone has identical susceptibility;
-polarized vaccination represents another exmtreme in whiche vaccinated individuals are either completely susceptible or not susceptible.
+polarized vaccination represents another extreme in which vaccinated individuals are either completely susceptible or not susceptible.
 \cite{gomes2014missing} tried to reconcile these two assumptions by using a smooth distribution of susceptibility that changes from a delta distribution (leaky vaccination) to a polarized distribution;
 however, they found that the predicted epidemic dynamics do not converge even though the distributions converge.
 Our framework provides a simple explanations for these discrepancies:
 regardless of the shape of the distribution of susceptibility, the leaky vaccination model always assumes that the infection events are independent of previous exposures.
 On the other hand, the polarized distribution scenario no longer assumes independence because all exposures result in successful infections (for susceptible, vaccinated individuals).
 In fact, the shape of the susceptibility distribution does not matter under immune boosting.
-In Supplementary Materials, we provide a mathematical proof that the epidemic dynamics only depend on the mean susceptibility and are independent of the shape of the  susceptibility distribution immune boosting is included in the leaky vaccination model; we also present simulations to further illustrate the equivalence.
+In Supplementary Materials, we provide a mathematical proof that the epidemic dynamics only depend on the mean susceptibility and are independent of the shape of the susceptibility distribution when immune boosting is included in the leaky vaccination model; we also present simulations to further illustrate the equivalence.
 Therefore, we argue that neglecting immune boosting can lead to misleading conclusions about the effects of susceptibility heterogeneity in epidemic dynamics.\swp{maybe too strong?}
 
 Finally, assumptions about vaccine-derived immunity also have important implications for estimating vaccine efficacy.
@@ -362,7 +361,7 @@ Nonetheless, both methods give correct estimates of vaccine efficacy for all vac
 Therefore, vaccine efficacy and effectiveness estimates should be interpreted with care, especially when a large fraction of vaccinated individuals have been infected.
 
 We rely on a simplifying assumption that natural infections (as well as polarized vaccination and immune boosting) provide complete protection against future infections.
-In practice, both infection- and vaccine-derived immunity wanes over time for many pathogens.
+In practice, both infection- and vaccine-derived immunity wanes over time for many pathogens \citep{heffernan2009implications,lewnard2018vaccine,perez2022}.
 When immunity wanes, polarized vaccination and immune boosting models may not necessarily predict identical dynamics.
 In particular, individuals who gain complete protection through polarized immunity immediately enter the $R_v$ compartment upon vaccination, whereas those who gain complete protection through immune boosting take longer to enter the $R_v$ compartment because they need to be exposed to infections.
 These differences can translate to shorter delays between reinfection events for the polarized immunity model, which in turn can lead to dynamical differences at the population level.
@@ -379,8 +378,8 @@ We have provided a unifying framework for understanding the impact of vaccinatio
 
 \section*{Supplementary Text}
 
-
-Consider a immune boosting model that allows for heterogeneity in vaccine-derived immunity.
+Here, we show that epidemic dynamics only depend on the mean susceptibility and are independent of the shape of the susceptibility distribution in the presence of immune boosting.
+To do so, consider a immune boosting model that allows for heterogeneity in vaccine-derived immunity.
 We assume that a vaccinated individual's susceptibility $0 \leq p \leq 1$ follows some distribution $f(p)$:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
