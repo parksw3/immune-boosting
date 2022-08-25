@@ -15,6 +15,7 @@ Sources += $(wildcard *.R)
 
 autowrapR = defined
 
+Sources += immune_boosting.tex
 ## immune_boosting.pdf: immune_boosting.tex
 
 Ignore += figure_simulation_generalized.tex
