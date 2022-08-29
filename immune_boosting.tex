@@ -200,6 +200,8 @@ The equivalence holds regardless of infection characteristics of vaccinated indi
 however, it does not necessarily hold when immunity wanes, as we discuss later.
 
 \jd{Let's talk about parameterization here. The $\theta$ is awkward, and there are at least two alternatives to consider.}
+\jd{Alternative 1 is to partition the efficacy; this is conceptually nice, multiplies the diagonal arrow by $1-\varepsilon$ and makes a pretty big mess of the horizontal arrows.}
+\jd{Alternative 2 is to parameterize by the partial $\varepsilon$'s, but I'm not allowed to work it out now (smiley face).}
 Finally, we present a generalized vaccination model that encompasses all three models:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
@@ -217,15 +219,18 @@ the value of parameter $q$, which represents the proportion of unsuccessful chal
 When $\theta = p$, a proportion $p$ of vaccinated individuals are completely susceptible to breakthrough infections, yielding a polarized vaccination model.
 We note that this generalized model does not account for the possibility that a proportion $p$ of vaccinated individuals remain partially susceptible to breakthrough infections while the remaining proportion $1-p$ of vaccinated individuals are completely protected; 
 as we will discuss later, a such model violates the definition of vaccine efficacy against infection.
+\jd{Definitely not following, will come back to this.}
 These four models are summarized in \fref{diagram}.
 
 \section*{Model simulations}
 
-As an example, we assume that both unvaccinated and vaccinated individuals transmit at the same rate $\beta=0.5/\mathrm{day}$ for an average of $1/\gamma=5 \mathrm{day}$ in a homogeneously mixing population. In this case, the force of infection is given by:
+As an example, we assume that both unvaccinated and vaccinated individuals transmit at the same rate $\beta=0.5/\mathrm{day}$ for an average of $1/\gamma=5~\mathrm{days}$ in a homogeneously mixing population. In this case, the force of infection is given by:
 \begin{equation}
 \lambda = \beta (I_u + I_v)
 \end{equation}
-For simplicity, we assume that 50\% individuals are vaccinated at the beginning of an epidemic with 60\% efficacy ($p=0.4$) and do not model vaccination during an outbreak ($\rho = 0$).
+\jd{I don't love that this slightly simplified version is our first equation for $\lambda$ (unless I missed it). Can we throw in a generic with $\beta_x$ above (and then skip this one)?}
+\jd{50\% is potentially confusing because it is 1 minus itself. I think the best way to deal with this is not by changing the number, but by giving it a name; then the consistency formulae below can properly reflect the correct quantities.}
+For simplicity, we assume that 50\% individuals are vaccinated at the beginning of an epidemic with 60\% efficacy ($p=0.4$) and that vaccination does not continue during the outbreak ($\rho = 0$).
 To keep the parameterizations consistent, we set $S_v(0) = 0.5 \theta$ and $R_v(0) = 0.5 (1-\theta)$ as our initial condition.
 For the leaky vaccination model and the immune boosting model, this assumption translates to $S_v(0) = 0.5$.
 For the polarized vaccination model, this assumption translates to $S_v(0) = 0.5 p$ and $R_v(0) = 0.5 (1-p)$.
@@ -233,8 +238,10 @@ For the polarized vaccination model, this assumption translates to $S_v(0) = 0.5
 \fref{simulation} compares epidemiological (A--C) and serological (D--F) trajectories predicted by three models (leaky vaccination model, polarized vaccination model, and immune boosting model).
 As explained earlier, the leaky vaccination model predicts a larger outbreak with a slower decay rate among vaccinated individuals than predicted by both the polarized vaccination and immune boosting models;
 the latter two models predict identical epidemic trajectories.
-In this case, the leaky vaccination model also predicts a larger outbreak among unvaccinated individuals because a larger outbreak among vaccinated individuals causes unvaccinated individuals to also experience a greater forces of infection over time.
+In this case \jd{I think in every case, and I think we can say this earlier}, the leaky vaccination model also predicts a larger outbreak among unvaccinated individuals because a larger outbreak among vaccinated individuals causes unvaccinated individuals to also experience a greater forces of infection over time.
 
+\jd{We need to say more about our serology assumptions. A lot of conceptual models would have the polarized-protected people be seropositive (because they're protected by antibodies. We should be explicitly talking about a serological test that can distinguish vaccinees from infectees.}
+\jd{Oops! I think I misunderstood who you were assuming was seropositive. Your way is simpler to explain, but we should still explain it.}
 We also find that all three models predict different serological trajectories. (\fref{simulation}D--F).
 The leaky vaccination model predicts the largest outbreak and therefore the highest levels of seroprevalence (89.7\% by the end of the simulation).
 The immune boosting model predicts a slightly lower seroprevalence overall (85.6\%);
@@ -244,7 +251,9 @@ The polarized vaccination model predicts an even lower seroprevalence (79.9\%) b
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{figure_simulation_compare.pdf}
 \caption{
-\textbf{Simulations of three different vaccination models}
+\textbf{Simulations of three different vaccination models.}
+\jd{I think the exposition order was leaky; polarized; boosting. Any reason not to follow that here?}
+\jd{This is a good place to remind people which categories count as seropositive, and why, with a brief text list.}
 \label{fig:simulation}
 }
 \end{figure}
@@ -254,13 +263,14 @@ First, when all vaccinated individuals have identical susceptibility ($\theta = 
 We observe biggest effects of boosting at intermediate vaccine efficacy, $p$, and high basic reproduction number, $\mathcal R_0$.
 When vaccine efficacy is too low (or too high), then boosting has negligible effects because everyone (or no one) gets infected.
 As we increase $\mathcal R_0$, the leaky vaccination model predicts that all vaccinated individuals will eventually get infected.
-On the other hand, the final size predicted by the immune boosting model cannot be greater than $1-p$.
-As we decrease $\theta$ from 1 to $p$, the generalized vaccination model collapses to the polarized vaccination model, and the final size becomes insensitive to the insensitive to the boosting parameter $q$.
+On the other hand, the final size predicted by the immune boosting model cannot be greater than $1-p$. \jd{Do you mean $p$?}
+As we decrease $\theta$ from 1 to $p$, the generalized vaccination model collapses to the polarized vaccination model, and the final size becomes insensitive to the boosting parameter $q$.
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{figure_simulation_generalized_vaccinated.pdf}
 \caption{
 \textbf{Sensitivity of the final size of an outbreak among vaccinated individuals to assumptions about vaccine-derived immunity}
+\jd{I worked for more than half an hour so I'm allowed to say: the intermediate scenario under two-efficacy parameterization is: $\varepsilon_\ell = \varepsilon_z = 1 - \sqrt{1-\varepsilon}$.}
 \label{fig:sensitivity}
 }
 \end{figure}
@@ -268,6 +278,7 @@ As we decrease $\theta$ from 1 to $p$, the generalized vaccination model collaps
 Finally, different assumptions about vaccination have important implications for measuring vaccine efficacy.
 All of the models we presented so far seem to assume same values for the vaccine efficacy ($1-p$) but predict different dynamics. 
 So how do we accurately estimate, or even define, vaccine efficacy?
+\jd{I wonder if we can make use of the effectiveness/efficacy split here. We can define effectiveness as the proportion of people protected from their first challenge, and use it above, and then use efficacy below for things that you might measure in a population.}
 
 Here, we compare two ways of estimating vaccine efficacy: the ratios of cumulative incidence and instantaneous hazard.
 The cumulative incidence refers to the cumulative proportion of infections among unvaccinated and vaccinated individuals; 
@@ -277,6 +288,7 @@ To calculate the cumulative-incidence-based estimates of vaccine efficacy from o
 \frac{\dd C_u}{\dd t} &= \lambda S_u\\
 \frac{\dd C_v}{\dd t} &= (p/\theta) \lambda S_v
 \end{align}
+\jd{I'm not loving $p$ for this, although it might be OK if we use $p$ a lot less for the other things\ldots. OTOH, it's worth brain-storming a bit.}
 Then, the cumulative proportion of infections among vaccinated $p_v(t)$ and unvaccinated $p_u(t)$ individuals can be expressed as:
 \begin{align}
 p_u(t) &= C_u(t)/S_u(0)\\
@@ -326,7 +338,8 @@ However, if the proportion $p$ of vaccinated individuals were less susceptible (
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{figure_simulation_efficacy.pdf}
 \caption{
-\textbf{Sensitivity of the final size of an outbreak among vaccinated individuals to assumptions about vaccine-derived immunity}
+\textbf{Sensitivity of the final size of an outbreak among vaccinated individuals to assumptions about vaccine-derived immunity.}
+\jd{This shows no such thing and could confuse tired people at the end of the day.}
 \label{fig:efficacy}
 }
 \end{figure}
