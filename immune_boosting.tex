@@ -270,7 +270,8 @@ As we decrease $\theta$ from 1 to $p$, the generalized vaccination model collaps
 \includegraphics[width=\textwidth]{figure_simulation_generalized_vaccinated.pdf}
 \caption{
 \textbf{Sensitivity of the final size of an outbreak among vaccinated individuals to assumptions about vaccine-derived immunity}
-\jd{I worked for more than half an hour so I'm allowed to say: the intermediate scenario under two-efficacy parameterization is: $\varepsilon_\ell = \varepsilon_z = 1 - \sqrt{1-\varepsilon}$.}
+\jd{I worked for more than half an hour so now I'm allowed to do math: the intermediate scenario under two-efficacy parameterization is: $\varepsilon_\ell = \varepsilon_z = 1 - \sqrt{1-\varepsilon}$.}
+\jd{And then I flaked on this for weeks; not sure what happened to make me lose track, sorry.}
 \label{fig:sensitivity}
 }
 \end{figure}
@@ -283,6 +284,7 @@ So how do we accurately estimate, or even define, vaccine efficacy?
 Here, we compare two ways of estimating vaccine efficacy: the ratios of cumulative incidence and instantaneous hazard.
 The cumulative incidence refers to the cumulative proportion of infections among unvaccinated and vaccinated individuals; 
 this is typically used for measuring the vaccine effectiveness from real-life outbreaks \citep{farrington1993estimation}.
+\jd{Here we are explicitly conflating effectiveness and efficacy; let's not do that.}
 To calculate the cumulative-incidence-based estimates of vaccine efficacy from our general model, we add two additional compartments, which keep track of cumulative incidence among unvaccinated $C_u$ and vaccinated $C_v$ individuals:
 \begin{align}
 \frac{\dd C_u}{\dd t} &= \lambda S_u\\
