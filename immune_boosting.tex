@@ -109,25 +109,22 @@ In particular, when a critical vaccination threshold is reached, the basic repro
 But reaching a critical vaccination threshold can be challenging, and vaccines often provide imperfect protections \citep{gandon2003imperfect,anderson2020challenges}.
 
 There are two main ways of modeling vaccines with imperfect protections: ``leaky'' and ``all-or-nothing'' vaccine \citep{smith1984assessment}.
-The leaky vaccination model assumes that vaccinated individuals experience a reduced force of infection (e.g., multiplied by a factor $p < 1$).
-The ``all-or-nothing'' vaccination model assumes that the proportion $p$ of vaccinated individuals are completely susceptible to infections and the remaining proportion $1-p$ of vaccinated individuals are completely protected.
+The leaky vaccination model assumes that vaccinated individuals experience a reduced force of infection (e.g., multiplied by a factor $1-p < 1$).
+The ``all-or-nothing'' vaccination model assumes that the proportion $p$ of vaccinated individuals are completely protected and the remaining proportion $1-p$ of vaccinated individuals are completely susceptible.
 This model is analogous to the polarized immunity model, in which infection from one strain gives complete or no protection against other strains \citep{gog2002dynamics}---we thus refer to this model as the polarized vaccination model \citep{gomes2014missing}.
 
-\jd{Is it better to talk about multiplier $p$ or about efficacy directly (e.g., $\varepsilon=1-p$)?}
-When these two models are used with the same nominal vaccine efficacy $1-p$, they predict different epidemic dynamics, including the final size \citep{smith1984assessment}:
+When these two models are used with the same nominal vaccine efficacy $p$, they predict different epidemic dynamics, including the final size \citep{smith1984assessment}:
 for high force of infection, almost all individuals eventually get infected in the leaky model, whereas many individuals are permanently protected in the polarized model.
 Modelers tend to rely on the leaky assumption, including throughout the SARS-CoV-2 pandemic \citep{dyson2021possible,gozzi2021importance,marziano2021vaccine,matrajt2021vaccine,park2022intermediate} with some exceptions \citep{bubar2021model,buckner2021dynamic}.
-Various reasons have been given, but most likely is a combination of convenience (the leaky model requires only a single compartment for vaccinated individuals, and tradition.
+Various reasons have been given, but most likely is a combination of convenience and tradition.
 
-\jd{Struggling here a bit. What happens when vaccinees get infected (do they go into the same box as naive infectees?) is actually downstream of the polarized/leaky choice.}
 Both models represent simplifications of reality.
 The leaky model in particular overlooks a potentially important mechanism: individuals in this model do not lose any susceptibility when (implicitly) exposed to a challenge that does not result in infection. 
 In fact, vaccinated individuals who successfully fight off exposures can experience immune boosting, thus becoming less susceptible to future infections without becoming infectious or developing symptoms from the exposure \citep{lavine2011natural,yang2020waning}.
 
-\jd{Sorry this is a mess; will try to make more progress soon.}
 In this study, we compare different approaches to dynamical modeling of vaccination and immunity.
-First, we show that simple leaky and polarized vaccination model and the polarized vaccination models can be reconciled via immune boosting mechanism.
-In doing so, we show that the polarized vaccination model and immune boosting model predict identical epidemic dynamics but different serological dynamics.
+First, we show that simple leaky and polarized vaccination models can be reconciled via immune boosting mechanism.
+In doing so, we show that the polarized vaccination and immune boosting models predict identical epidemic dynamics but different serological dynamics.
 Then, we present a generalized vaccination model, which bridges all three models, and explore its dynamics.
 Finally, we use our framework to compare two ways of measuring vaccine efficacy and show that leaky and polarized vaccination models each have a correct way of measuring vaccine efficacy.
 
@@ -139,7 +136,7 @@ Finally, we use our framework to compare two ways of measuring vaccine efficacy 
 \textbf{A schematic diagram of vaccination models.}
 $S$ represents susceptible individuals. $I$ represents infected individuals. $R$ represents recovered individuals.
 $\lambda$ represents force of infection. 
-$1-p$ represents vaccine efficacy.
+$p$ represents vaccine efficacy.
 $\gamma$ represents recovery rate.
 $\theta$ represents the proportion of individuals that remain partially susceptible after vaccination.
 $q$ represents the proportion of unsuccessful challenges that result in immune boosting.
@@ -148,7 +145,10 @@ Subscripts $u$ and $v$ represents unvaccinated and vaccinated.
 }
 \end{figure}
 
-We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $p$, which represents susceptibility to infection:
+We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $\varepsilon$.
+For 
+
+which represents susceptibility to infection:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
 \frac{\dd I_u}{\dd t} &= \lambda(t) S_u - \gamma_u I_u \\
