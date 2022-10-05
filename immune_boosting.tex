@@ -117,7 +117,7 @@ This model is analogous to the polarized immunity model, in which infection from
 When these two models are used with the same nominal vaccine efficacy $1-p$, they predict different epidemic dynamics, including the final size \citep{smith1984assessment}:
 for high force of infection, almost all individuals eventually get infected in the leaky model, whereas many individuals are permanently protected in the polarized model.
 Modelers tend to rely on the leaky assumption, including throughout the SARS-CoV-2 pandemic \citep{dyson2021possible,gozzi2021importance,marziano2021vaccine,matrajt2021vaccine,park2022intermediate} with some exceptions \citep{bubar2021model,buckner2021dynamic}.
-Various reasons have been given, but most likely is a combination of convenience (the leaky model requires only a single compartment for vaccinated individuals, and tradition.
+Various reasons have been given, but most likely is a combination of convenience (the leaky model requires only a single compartment for vaccinated individuals), and tradition.
 
 \jd{Struggling here a bit. What happens when vaccinees get infected (do they go into the same box as naive infectees?) is actually downstream of the polarized/leaky choice.}
 Both models represent simplifications of reality.
@@ -270,8 +270,7 @@ As we decrease $\theta$ from 1 to $p$, the generalized vaccination model collaps
 \includegraphics[width=\textwidth]{figure_simulation_generalized_vaccinated.pdf}
 \caption{
 \textbf{Sensitivity of the final size of an outbreak among vaccinated individuals to assumptions about vaccine-derived immunity}
-\jd{I worked for more than half an hour so now I'm allowed to do math: the intermediate scenario under two-efficacy parameterization is: $\varepsilon_\ell = \varepsilon_z = 1 - \sqrt{1-\varepsilon}$.}
-\jd{And then I flaked on this for weeks; not sure what happened to make me lose track, sorry.}
+\jd{The intermediate scenario under two-efficacy parameterization is: $\varepsilon_\ell = \varepsilon_z = 1 - \sqrt{1-\varepsilon}$.}
 \label{fig:sensitivity}
 }
 \end{figure}
@@ -323,7 +322,9 @@ Likewise, the cumulative incidence-based estimates also give correct answers for
 However, when some challenges are not boosted ($q < 1$), using cumulative incidence underestimates the vaccine efficacy beyond the exponential growth phase.
 This is because vaccinated individuals who have been exposed but are not boosted or infected still remain susceptible to future infections; 
 larger final epidemic sizes predicted by these models (\fref{sensitivity}) then translate to a seemingly lower vaccine efficacy.
+\jd{Maybe we should use effectiveness for the parametric (theoretical) values and reserve efficacy for observable things -- this would then say that efficacy over the measured period is lower then effectiveness.}
 
+\jd{Similarly, maybe we should talk about “hazard reduction” instead of hazard-based estimates of effectiveness.}
 The hazard-based estimates give correct answers for the leaky vaccine model (when $q=0$ and $\theta=1$) because the ratios of force of infection that unvaccinated and vaccinated individuals experience are always constant.
 However, the using hazard ratios overestimates vaccine efficacy in the presence of immune boosting: since boosted individuals have not yet been infected, the susceptible pool in the vaccinated group appears to be bigger than it really is, causing the per-capita rate of infection to seem smaller.
 Vaccine efficacy is also overestimated for polarized vaccination for similar reasons.
@@ -333,9 +334,10 @@ More generally, we expect both estimates to give unbiased estimates as long as t
 in trial settings, where incidence is relatively low, this assumption may hold.
 But estimating vaccine efficacy from real outbreaks is expected to be more difficult especially when the disease is spreading rapidly and causing susceptible depletion.
 
-Finally, we note, again, that the generalized model does not account for the possibility that the proportion $p$ of vaccinated individuals remain partially susceptible to breakthrough infections while the remaining proportion $1-p$ of vaccinated individuals are completely protected (through polarization).
+Finally, we note again that the generalized model does not account for the possibility that the proportion $p$ of vaccinated individuals remain partially susceptible to breakthrough infections while the remaining proportion $1-p$ of vaccinated individuals are completely protected (through polarization).
 The standard polarized vaccination model, in which the proportion $p$ of vaccinated individuals are completely susceptible and the remaining proportion $1-p$ are fully protected, assume vaccine efficacy of $1-p$, which can be correctly estimated using both estimators during the exponential growth phase (\fref{efficacy}).
 However, if the proportion $p$ of vaccinated individuals were less susceptible (as in the leaky sense), a such model would have an even higher vaccine efficacy, thereby violating our assumptions.
+\jd{We should discuss recasting all of this: I would kind of like to use $\varepsilon$ to represent actual effectiveness (by some metric). It's also not clear to me that there is something actually missing from the generalized model here, rather than an infelicity in the way we define our parameters.}
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{figure_simulation_efficacy.pdf}
@@ -350,7 +352,7 @@ However, if the proportion $p$ of vaccinated individuals were less susceptible (
 
 Understanding the degree to which vaccination provides protection against infections is critical to predicting their population-level impact on epidemic dynamics.
 Two models of vaccine-derived immunity have been previously proposed: leaky and polarized vaccination models.
-The polarized model has been largely neglected in epidemiological modeling due to its extreme assumptions that a fraction of vaccinated individuals do not attain any protection. 
+The polarized model has been largely neglected in epidemiological modeling due to its apparently extreme assumption that a fraction of vaccinated individuals do not receive any protection. 
 But the leaky vaccination model also makes an unrealistic assumption that vaccinated individuals who are exposed to infections can still remain susceptible, independent of previous exposures; 
 a such assumption causes the leaky vaccination model to always predict a larger epidemic final size.
 The differences in their epidemic dynamics can be understood by immune boosting: vaccinated individuals can attain protection without developing a transmissible infection, and therefore their infections are no longer independent of their previous exposures.
