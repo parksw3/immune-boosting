@@ -5,6 +5,8 @@
 \usetikzlibrary{arrows,positioning}
 \usetikzlibrary{arrows.meta}
 
+\newcommand{\VE}{\ensuremath{\textrm{VE}}}
+
 \definecolor{colorS}{HTML}{56B4E9}
 \definecolor{colorRu}{HTML}{009E73}
 \definecolor{colorV}{HTML}{F0E442}
@@ -14,7 +16,7 @@
 
 \begin{document}
 
-\begin{tikzpicture}[node distance=1.4cm,auto,>=latex',every node/.append style={align=center},int/.style={draw, minimum size=1cm, circle},inverter/.style={rectangle,draw,inner sep=2pt,minimum size=6mm},]
+\begin{tikzpicture}[node distance=2.5cm,auto,>=latex',every node/.append style={align=center},int/.style={draw, minimum size=1cm, circle},inverter/.style={rectangle,draw,inner sep=2pt,minimum size=6mm},]
     \node [int, fill=colorS, fill opacity=1, text opacity=1] (S)             {$S_u$};
     \node [int, right=of S, fill=colorIu] (Is)             {$I_u$};
     \node [int, right=of Is, fill=colorRu, fill opacity=1, text opacity=1] (Rs)             {$R_u$};
@@ -24,7 +26,7 @@
     \node [int, right=of V, fill=colorIv] (Iv)             {$I_v$};
     \node [int, right=of Iv, fill=colorRv, fill opacity=1, text opacity=1] (Rv)             {$R_v$};
     \path[->] (S) edge node [left] {$\rho$} (V);
-    \path[->] (V) edge node [above] {$p \lambda(t)$}(Iv);
+    \path[->] (V) edge node [above] {$(1-\VE_L) \lambda(t)$}(Iv);
     \path[->] (Iv) edge node [above] {$\gamma_v$} (Rv);
     \node [int, right=2.5cm of Rs, fill=colorS, fill opacity=1] (S2)             {$S_u$};
     \node [int, right=of S2, fill=colorIu] (Is2)             {$I_u$};
@@ -34,11 +36,11 @@
     \node [int, below=of S2, fill=colorV, fill opacity=1, text opacity=1] (V2)             {$S_v$};
     \node [int, right=of V2, fill=colorIv] (Iv2)             {$I_v$};
     \node [int, right=of Iv2, fill=colorRv, fill opacity=1, text opacity=1] (Rv2)             {$R_v$};
-    \path[->] (S2) edge node [left] {$\theta\rho$} (V2);
-    \path[->] (S2) edge node [sloped, below] {$(1-\theta)\rho$} (Rv2);
-    \path[->] (V2) edge node [above] {$p \lambda(t)/\theta$} (Iv2);
+    \path[->] (S2) edge node [right] {$(1-\VE_P) \rho$} (V2);
+    \path[->] (S2) edge node [sloped, above] {$\VE_P \rho$} (Rv2);
+    \path[->] (V2) edge node [above] {$(1-\VE_L) \lambda(t)$} (Iv2);
     \path[->] (Iv2) edge node [above] {$\gamma_v$} (Rv2);
-    \path[->] (V2) edge [out=-60, in=-120] node [below] {$q(1-p/\theta) \lambda(t)$} (Rv2);
+    \path[->] (V2) edge [out=-60, in=-120] node [below] {$q \VE_L \lambda(t)$} (Rv2);
     \node [int, below right=2.5cm of Rv2, fill=colorS, fill opacity=1] (S3)             {$S_u$};
     \node [int, right=of S3, fill=colorIu] (Is3)             {$I_u$};
     \node [int, right=of Is3, fill=colorRu, fill opacity=1, text opacity=1] (Rs3)             {$R_u$};
@@ -48,9 +50,9 @@
     \node [int, right=of V3, fill=colorIv] (Iv3)             {$I_v$};
     \node [int, right=of Iv3, fill=colorRv, fill opacity=1, text opacity=1] (Rv3)             {$R_v$};
     \path[->] (S3) edge node [left] {$\rho$} (V3);
-    \path[->] (V3) edge node [above] {$p \lambda(t)$} (Iv3);
+    \path[->] (V3) edge node [above] {$(1-\VE_L) \lambda(t)$} (Iv3);
     \path[->] (Iv3) edge node [above] {$\gamma_v$} (Rv3);
-    \path[->] (V3) edge [out=-60, in=-120] node [below] {$(1-p) \lambda(t)$} (Rv3);
+    \path[->] (V3) edge [out=-60, in=-120] node [below] {$\VE_L \lambda(t)$} (Rv3);
     \node [int, above right=2.5cm of Rs2, fill=colorV, fill opacity=1, text opacity=1] (V4)             {$S_v$};
     \node [int, above=of V4, fill=colorS, fill opacity=1, text opacity=1] (S4)             {$S_u$};
     \node [int, right=of S4, fill=colorIu] (Is4)             {$I_u$};
@@ -59,8 +61,8 @@
     \path[->] (Is4) edge node [above] {$\gamma_u$} (Rs4);
     \node [int, right=of V4, fill=colorIv] (Iv4)             {$I_v$};
     \node [int, right=of Iv4, fill=colorRv, fill opacity=1, text opacity=1] (Rv4)             {$R_v$};
-    \path[->] (S4) edge node [left] {$p \rho$} (V4);
-    \path[->] (S4) edge node [sloped, below] {$(1-p) \rho$} (Rv4);
+    \path[->] (S4) edge node [left] {$(1-\VE_P) \rho$} (V4);
+    \path[->] (S4) edge node [sloped, below] {$\VE_P \rho$} (Rv4);
     \path[->] (V4) edge node [above] {$\lambda(t)$} (Iv4);
     \path[->] (Iv4) edge node [above] {$\gamma_v$} (Rv4);
     \node [below=0.6cm of S2, white] (tmp1) {};

@@ -81,6 +81,7 @@
 \newcommand{\PP}{\ensuremath{\mathcal P}}
 \newcommand{\II}{\ensuremath{\mathcal I}}
 \newcommand{\HH}{\ensuremath{\mathcal H}}
+\newcommand{\VE}{\ensuremath{\textrm{VE}}}
 
 \begin{document}
 
@@ -109,18 +110,14 @@ In particular, when a critical vaccination threshold is reached, the basic repro
 But reaching a critical vaccination threshold can be challenging, and vaccines often provide imperfect protections \citep{gandon2003imperfect,anderson2020challenges}.
 
 There are two main ways of modeling vaccines with imperfect protections: ``leaky'' and ``all-or-nothing'' vaccine \citep{smith1984assessment}.
-The leaky vaccination model assumes that vaccinated individuals experience a reduced force of infection (e.g., multiplied by a factor $1-p < 1$).
-The ``all-or-nothing'' vaccination model assumes that the proportion $p$ of vaccinated individuals are completely protected and the remaining proportion $1-p$ of vaccinated individuals are completely susceptible.
+The leaky vaccination model assumes that vaccinated individuals experience a reduced force of infection (e.g., multiplied by a factor $1-\VE_L < 1$).
+The ``all-or-nothing'' vaccination model assumes that the proportion $\VE_P$ of vaccinated individuals are completely protected and the remaining proportion $1-\VE_P$ of vaccinated individuals are completely susceptible.
 This model is analogous to the polarized immunity model, in which infection from one strain gives complete or no protection against other strains \citep{gog2002dynamics}---we thus refer to this model as the polarized vaccination model \citep{gomes2014missing}.
 
-When these two models are used with the same nominal vaccine efficacy $p$, they predict different epidemic dynamics, including the final size \citep{smith1984assessment}:
+When these two models are used with the same nominal vaccine efficacy $\VE_L = \VE_P$, they predict different epidemic dynamics, including the final size \citep{smith1984assessment}:
 for high force of infection, almost all individuals eventually get infected in the leaky model, whereas many individuals are permanently protected in the polarized model.
 Modelers tend to rely on the leaky assumption, including throughout the SARS-CoV-2 pandemic \citep{dyson2021possible,gozzi2021importance,marziano2021vaccine,matrajt2021vaccine,park2022intermediate} with some exceptions \citep{bubar2021model,buckner2021dynamic}.
-<<<<<<< HEAD
 Various reasons have been given, but most likely is a combination of convenience and tradition.
-=======
-Various reasons have been given, but most likely is a combination of convenience (the leaky model requires only a single compartment for vaccinated individuals), and tradition.
->>>>>>> 2a6aed04ff3f3903a9dcad3f49cbfa313dc657d3
 
 Both models represent simplifications of reality.
 The leaky model in particular overlooks a potentially important mechanism: individuals in this model do not lose any susceptibility when (implicitly) exposed to a challenge that does not result in infection. 
@@ -149,95 +146,86 @@ Subscripts $u$ and $v$ represents unvaccinated and vaccinated.
 }
 \end{figure}
 
-We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $\varepsilon$.
-For 
-
-which represents susceptibility to infection:
+We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $1-\VE_L$:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
 \frac{\dd I_u}{\dd t} &= \lambda(t) S_u - \gamma_u I_u \\
 \frac{\dd R_u}{\dd t} &= \gamma_u I_u \\
-\frac{\dd S_v}{\dd t} &= - p \lambda(t) S_v + \rho S_u \\
-\frac{\dd I_v}{\dd t} &= p \lambda(t) S_v - \gamma_v I_v \\
+\frac{\dd S_v}{\dd t} &= - (1-\VE_L) \lambda(t) S_v + \rho S_u \\
+\frac{\dd I_v}{\dd t} &= (1-\VE_L) \lambda(t) S_v - \gamma_v I_v \\
 \frac{\dd R_v}{\dd t} &= \gamma_v I_v
 \end{align}
 where subscripts $u$ and $v$ indicate the unvaccinated and vaccinated individuals;
 $\lambda$ represents the baseline force of infection experienced by unvaccinated individuals; 
 $\rho$ represents vaccination rate;
-and $\gamma$ represent the recovery rate.
+$\gamma$ represents the recovery rate;
+and $\VE_L$ represents the vaccine efficacy, which captures the amount of reduction in the probability of infection.
 This kind of model is somtimes called “history-based”, since susceptibility of an individual depends only on their history of infections (or vaccination) \citep{gog2002dynamics,gog2002status,kucharski2016capturing}.
-For this model, $1-p$ also represents the vaccine efficacy, which captures the amount of reduction in the probability of infection.
 
-Conversely, the polarized vaccination model assumes that a proportion $p$ of vaccinated individuals still remain susceptible, whereas the remaining proportion $1-p$ become fully immune: 
+Conversely, the polarized vaccination model assumes that a proportion $\VE_P$ of vaccinated individuals become fully immune, whereas the remaining proportion $1-\VE_P$ still remain susceptible: 
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
 \frac{\dd I_u}{\dd t} &= \lambda(t) S_u - \gamma_u I_u \\
 \frac{\dd R_u}{\dd t} &= \gamma_u I_u \\
-\frac{\dd S_v}{\dd t} &= - \lambda(t) S_v + p \rho S_u \\
+\frac{\dd S_v}{\dd t} &= - \lambda(t) S_v + (1-\VE_P) \rho S_u \\
 \frac{\dd I_v}{\dd t} &= \lambda(t) S_v - \gamma_v I_v \\
-\frac{\dd R_v}{\dd t} &= \gamma_v I_v + (1-p) \rho S_u
+\frac{\dd R_v}{\dd t} &= \gamma_v I_v + \VE_P \rho S_u
 \end{align}
 The polarized immunity model is often used in status-based models for cross immunity---status-based models keep track of immune statuses of individuals, rather than their infection histories \citep{gog2002dynamics,gog2002status,kucharski2016capturing}.
-For this model, the parameter $1-p$ also provides some sort of measure for vaccine efficacy but has a different meaning from the parameter $p$ in the leaky vaccine model---we return to this point later.
-\jd{The more I read, the more I want to switch to $\varepsilon$.}
+For this model, the parameter $\VE_P$ also provides some sort of measure for vaccine efficacy but has a different meaning from the parameter $\VE_L$ in the leaky vaccine model---we return to this point later.
 
-While both the leaky vaccination model and the polarized vaccination model have been widely used in literature, their assumptions lead to a key dynamical differences: the leaky vaccination model assumes that all vaccinated individuals can be eventually infected, whereas the polarized vaccination model assumes that proportion $1-p$ of vaccinated individuals will never be infected.
+While both the leaky vaccination model and the polarized vaccination model have been widely used in literature, their assumptions lead to a key dynamical differences: the leaky vaccination model assumes that all vaccinated individuals can be eventually infected, whereas the polarized vaccination model assumes that proportion $\VE_P$ of vaccinated individuals will never be infected.
 In other words, the polarized vaccination model will always predict a lower final size than the leaky vaccination model for the same set of nominal parameters.
 
-\jd{We can consider getting into this a different way: we originally came to this model because we thought that invisible challenges were a problem. Are we going to get back to that point: that challenges should never just “disappear” only because of immune status?}
 To better understand these differences, we consider a immune boosting model.
-The leaky vaccination model assumes that vaccinated individuals have an independent probability $p$ of infection for every challenge (or exposure) and will otherwise remain partially susceptible.
-Instead, the immune boosting model assumes that unsuccessful challenges elicit immune response, moving individuals from $S_v$ to $R_v$ compartment at rate $(1-p) \lambda(t)$ and thereby breaking the independence assumption of the leaky vaccine model:  
+The leaky vaccination model assumes that vaccinated individuals are challenged with a lower force of infection $(1-\VE_L) \lambda(t)$, but challenges should never disappear only because of immune status.
+In a homogeneously mixing population, we expect both vaccinated and unvaccinated individuals to be challenged with identical forces of infection $\lambda$.
+Therefore, the leaky vaccination model implicitly assumes that vaccinated individuals have an independent probability $(1-\VE_L)$ of infection for every challenge and will otherwise remain partially susceptible, thereby making subsequent challenges independent of previous challenges.
+Instead, the immune boosting model assumes that unsuccessful challenges elicit immune response, moving individuals from $S_v$ to $R_v$ compartment at rate $\VE_L \lambda(t)$ and thereby breaking the independence assumption of the leaky vaccine model:  
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
 \frac{\dd I_u}{\dd t} &= \lambda(t) S_u - \gamma_u I_u \\
 \frac{\dd R_u}{\dd t} &= \gamma_u I_u \\
 \frac{\dd S_v}{\dd t} &= - \lambda(t) S_v + \rho S_u \\
-\frac{\dd I_v}{\dd t} &= p \lambda(t) S_v - \gamma_v I_v \\
-\frac{\dd R_v}{\dd t} &= (1-p) \lambda(t) S_v + \gamma_v I_v
+\frac{\dd I_v}{\dd t} &= (1-\VE_L) \lambda(t) S_v - \gamma_v I_v \\
+\frac{\dd R_v}{\dd t} &= \VE_L \lambda(t) S_v + \gamma_v I_v
 \end{align}
 In this model, both unvaccinated and vaccinated individuals are subject to identical forces of infection, which represent the per capita rate of challenges, but the outcome of challenges differ.
+
 The epidemiological dynamics (i.e., trajectories of $I_u$ and $I_v$) predicted by the immune-boosting model (based on leaky vaccination) and the polarized vaccination model are identical: 
 both models assume that individuals become vaccinated at rate $\rho$ and move out of the $S_v$ compartment at rate $\lambda$ and only differ in when individuals get sorted based on the result of their next challenge.
 This equivalence allows us to bridge the difference between the leaky and polarized vaccination models.
 The equivalence holds regardless of infection characteristics of vaccinated individuals (i.e., the duration of their infection and their transmissibility);
-however, it does not necessarily hold when immunity wanes, as we discuss later.
+however, it may not necessarily hold when immunity wanes, as we discuss later.
 
-\jd{Let's talk about parameterization here. The $\theta$ is awkward, and there are at least two alternatives to consider.}
-\jd{Alternative 1 is to partition the efficacy; this is conceptually nice, multiplies the diagonal arrow by $1-\varepsilon$ and makes a pretty big mess of the horizontal arrows.}
-\jd{Alternative 2 is to parameterize by the partial $\varepsilon$'s, but I'm not allowed to work it out now (smiley face).}
 Finally, we present a generalized vaccination model that encompasses all three models:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
 \frac{\dd I_u}{\dd t} &= \lambda(t) S_u - \gamma_u I_u \\
 \frac{\dd R_u}{\dd t} &= \gamma_u I_u \\
-\frac{\dd S_v}{\dd t} &= - [q \{1-(p/\theta)\} + (p/\theta)] \lambda(t) S_v + \theta \rho S_u \\
-\frac{\dd I_v}{\dd t} &= (p/\theta) \lambda(t) S_v - \gamma_v I_v \\
-\frac{\dd R_v}{\dd t} &= (1 - \theta) \rho S_u + q [1-(p/\theta)] \lambda(t) S_v + \gamma_v I_v
+\frac{\dd S_v}{\dd t} &= - [1- (1-q) \VE_L] \lambda(t) S_v + (1-\VE_P) \rho S_u \\
+\frac{\dd I_v}{\dd t} &= (1-\VE_L) \lambda(t) S_v - \gamma_v I_v \\
+\frac{\dd R_v}{\dd t} &= \VE_P \rho S_u + q \VE_L \lambda(t) S_v + \gamma_v I_v
 \end{align}
-This model includes two additional parameters: $\theta$ and $q$.
-The parameter $\theta$ represents the proportion of individuals that remain partially susceptible after vaccination;
-this parameter also scales the force of infection, allowing us to bridge the polarized vaccination and immune boosting models.
-For example, when $\theta = 1$, all vaccinated individuals are partially susceptible to breakthrough infections;
-the value of parameter $q$, which represents the proportion of unsuccessful challenges that result in immune boosting, allows us to bridge between the leaky vaccination model ($q=0$) and the immune boosting model ($q = 1$).
-When $\theta = p$, a proportion $p$ of vaccinated individuals are completely susceptible to breakthrough infections, yielding a polarized vaccination model.
-We note that this generalized model does not account for the possibility that a proportion $p$ of vaccinated individuals remain partially susceptible to breakthrough infections while the remaining proportion $1-p$ of vaccinated individuals are completely protected; 
-as we will discuss later, a such model violates the definition of vaccine efficacy against infection.
-\jd{Definitely not following, will come back to this.}
-These four models are summarized in \fref{diagram}.
+This model includes one additional parameters, $q$, which represents the proportion of unsuccessful challenges that result in immune boosting.
+When $q=0$ (i.e., in the absence of boosting), setting $\VE_P = 0$ gives us the leaky vaccination model. 
+When $q=1$ (i.e., in the presence of full boosting), setting $\VE_P = 0$ gives us the immune boosting model, whereas setting $\VE_L = 0$ gives us the polarized vaccination model. 
+The relationship between these four models are summarized in \fref{diagram}.
+
+We note that the generalized vaccination model has a combined vaccine efficacy of $\VE = 1- (1-\VE_L) (1-\VE_P)$, and therefore always has higher efficacy than any of the individual models.
+Therefore, we later analyze the dynamics of the generalized vaccination model while keeping $\VE$ fixed.
 
 \section*{Model simulations}
 
-As an example, we assume that both unvaccinated and vaccinated individuals transmit at the same rate $\beta=0.5/\mathrm{day}$ for an average of $1/\gamma=5~\mathrm{days}$ in a homogeneously mixing population. In this case, the force of infection is given by:
+We begin by comparing the dynamics of three individual models: leaky vaccination, polarized vaccination, and immune boosting models.
+As an example, we consider a homogeneously mixing population. In this case, the force of infection is given by:
 \begin{equation}
-\lambda = \beta (I_u + I_v)
+\lambda = \beta_u I_u + \beta_v I_v
 \end{equation}
-\jd{I don't love that this slightly simplified version is our first equation for $\lambda$ (unless I missed it). Can we throw in a generic with $\beta_x$ above (and then skip this one)?}
-\jd{50\% is potentially confusing because it is 1 minus itself. I think the best way to deal with this is not by changing the number, but by giving it a name; then the consistency formulae below can properly reflect the correct quantities.}
-For simplicity, we assume that 50\% individuals are vaccinated at the beginning of an epidemic with 60\% efficacy ($p=0.4$) and that vaccination does not continue during the outbreak ($\rho = 0$).
-To keep the parameterizations consistent, we set $S_v(0) = 0.5 \theta$ and $R_v(0) = 0.5 (1-\theta)$ as our initial condition.
-For the leaky vaccination model and the immune boosting model, this assumption translates to $S_v(0) = 0.5$.
-For the polarized vaccination model, this assumption translates to $S_v(0) = 0.5 p$ and $R_v(0) = 0.5 (1-p)$.
+For simplicity, we assume that both unvaccinated and vaccinated individuals transmit at the same rate $\beta_u = \beta_v =0.5/\mathrm{day}$ for an average of $1/\gamma=5~\mathrm{days}$.
+We also assume that $\phi = 0.5$ proportion of individuals are vaccinated at the beginning of an epidemic with 60\% efficacy ($\VE_P=\VE_L=0.6$) and that vaccination does not continue during the outbreak ($\rho = 0$).
+To keep the parameterizations consistent, we set $S_v(0) = (1-\phi) (1-\VE_P)$ and $R_v(0) = \phi \VE_P$ as our initial condition for the polarized vaccination model.
+For the leaky vaccination model and the immune boosting model, we set $S_v(0) = (1-\phi)$ and $R_v(0) = \phi$.
 
 \fref{simulation} compares epidemiological (A--C) and serological (D--F) trajectories predicted by three models (leaky vaccination model, polarized vaccination model, and immune boosting model).
 As explained earlier, the leaky vaccination model predicts a larger outbreak with a slower decay rate among vaccinated individuals than predicted by both the polarized vaccination and immune boosting models;
