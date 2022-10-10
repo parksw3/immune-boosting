@@ -230,12 +230,12 @@ For the leaky vaccination model and the immune boosting model, we set $S_v(0) = 
 \fref{simulation} compares epidemiological (A--C) and serological (D--F) trajectories predicted by three models (leaky vaccination model, polarized vaccination model, and immune boosting model).
 As explained earlier, the leaky vaccination model predicts a larger outbreak with a slower decay rate among vaccinated individuals than predicted by both the polarized vaccination and immune boosting models;
 the latter two models predict identical epidemic trajectories.
-In this case \jd{I think in every case, and I think we can say this earlier}, the leaky vaccination model also predicts a larger outbreak among unvaccinated individuals because a larger outbreak among vaccinated individuals causes unvaccinated individuals to also experience a greater forces of infection over time.
+The leaky vaccination model also predicts a larger outbreak among unvaccinated individuals because a larger outbreak among vaccinated individuals causes unvaccinated individuals to also experience a greater forces of infection over time.
 
-\jd{We need to say more about our serology assumptions. A lot of conceptual models would have the polarized-protected people be seropositive (because they're protected by antibodies. We should be explicitly talking about a serological test that can distinguish vaccinees from infectees.}
-\jd{Oops! I think I misunderstood who you were assuming was seropositive. Your way is simpler to explain, but we should still explain it.}
-We also find that all three models predict different serological trajectories. (\fref{simulation}D--F).
-The leaky vaccination model predicts the largest outbreak and therefore the highest levels of seroprevalence (89.7\% by the end of the simulation).
+We also find that all three models predict different serological trajectories. (\fref{simulation}D--F). 
+Here, we do not distinguish the source of antibodies (whether derived from natural infections or vaccinations) and assume that individuals in $R_u$, $S_v$, and $R_v$ compartments are seropositive, except in the case of polarized vaccination:
+in the case of polarized vaccination, we do not expect individuals in the $S_v$ compartment to be seropositive because they have not retained any immunity from the vaccination.
+Under these assumptions, the leaky vaccination model predicts the largest outbreak and therefore the highest levels of seroprevalence (89.7\% by the end of the simulation).
 The immune boosting model predicts a slightly lower seroprevalence overall (85.6\%);
 in addition, a higher proportion of vaccinated individuals have moved from $S_v$ to $R_v$ compartment through boosting.
 The polarized vaccination model predicts an even lower seroprevalence (79.9\%) because individuals in the $S_v$ have not retained any immunity from the vaccination.

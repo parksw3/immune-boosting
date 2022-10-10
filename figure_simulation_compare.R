@@ -15,15 +15,16 @@ source("color_palette.R")
 viridis::viridis(4, begin=0.1, alpha=0.4)
 
 S0 <- 0.5
+I0 <- 1e-6
 R0 <- 2.5
-p <- 0.4
+VE <- 0.6
 
-out1 <- simulate_model_generalized(R0=R0, rho=0, p=p, theta=1, q=0,
-                                   S0=S0-1e-6, V0=(1-S0)) ## leaky
-out2 <- simulate_model_generalized(R0=R0, rho=0, p=p, theta=1,
-                                   S0=S0-1e-6, V0=(1-S0)) ## boosting
-out3 <- simulate_model_generalized(R0=R0, rho=0, p=0.4, theta=0.4,
-                                   S0=S0-1e-6, V0=(1-S0) * p, Rv0=(1-S0) * (1-p)) ## polarized vaccination
+out1 <- simulate_model_generalized(R0=R0, rho=0, VE_L=VE, VE_P=0, q=0,
+                                   S0=S0-I0, V0=(1-S0)) ## leaky
+out2 <- simulate_model_generalized(R0=R0, rho=0, VE_L=0, VE_P=VE,
+                                   S0=S0-I0, V0=(1-S0) * (1-VE), Rv0=(1-S0) * VE) ## polarized vaccination
+out3 <- simulate_model_generalized(R0=R0, rho=0, VE_L=VE, VE_P=0, q=1,
+                                   S0=S0-I0, V0=(1-S0)) ## boosting
 
 g1 <- ggplot(out1) +
   geom_line(aes(time, Iu*100, col="$I_u$", lty="$I_u$"), lwd=2) +
@@ -76,23 +77,23 @@ out1a <- out1 %>%
   gather(key, value, -time) %>%
   mutate(
     key=factor(key, levels=c("Ru", "Rv", "V"),
-               labels=c("$R_u$", "$R_v$", "$V$"))
+               labels=c("$R_u$", "$R_v$", "$S_v$"))
   )
 
 out2a <- out2 %>%
-  select(time, V, Rv, Ru) %>%
-  gather(key, value, -time) %>%
-  mutate(
-    key=factor(key, levels=c("Ru", "Rv", "V"),
-               labels=c("$R_u$", "$R_v$", "$V$"))
-  )
-
-out3a <- out3 %>%
   select(time, Rv, Ru) %>%
   gather(key, value, -time) %>%
   mutate(
     key=factor(key, levels=c("Ru", "Rv", "V"),
-               labels=c("$R_u$", "$R_v$", "$V$"))
+               labels=c("$R_u$", "$R_v$", "$S_v$"))
+  )
+
+out3a <- out3 %>%
+  select(time, V, Rv, Ru) %>%
+  gather(key, value, -time) %>%
+  mutate(
+    key=factor(key, levels=c("Ru", "Rv", "V"),
+               labels=c("$R_u$", "$R_v$", "$S_v$"))
   )
 
 g4 <- ggplot(out1a) +
@@ -114,7 +115,7 @@ g4 <- ggplot(out1a) +
 
 g5 <- ggplot(out2a) +
   geom_area(aes(time, value*100, fill=key)) +
-  geom_hline(yintercept=tail(out2$Ru+out2$V+out2$Rv, 1)*100, lty=2, lwd=2) +
+  geom_hline(yintercept=tail(out2$Ru+out2$Rv, 1)*100, lty=2, lwd=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0),
                      breaks=0:7*20) +
   scale_y_continuous("Seropositive (\\%)", limits=c(0, 1)*100, expand=c(0, 0)) +
@@ -130,7 +131,7 @@ g5 <- ggplot(out2a) +
 
 g6 <- ggplot(out3a) +
   geom_area(aes(time, value*100, fill=key)) +
-  geom_hline(yintercept=tail(out3$Ru+out3$Rv, 1)*100, lty=2, lwd=2) +
+  geom_hline(yintercept=tail(out3$Ru+out3$V+out3$Rv, 1)*100, lty=2, lwd=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0),
                      breaks=0:7*20) +
   scale_y_continuous("Seropositive (\\%)", limits=c(0, 1)*100, expand=c(0, 0)) +
@@ -148,10 +149,10 @@ gtot1 <- egg::ggarrange(g1, g4, nrow=2, draw=FALSE)
 gtot1a <- annotate_figure(gtot1, top=text_grob("Leaky vaccination model", size=14))
 
 gtot2 <- egg::ggarrange(g2, g5, nrow=2, draw=FALSE)
-gtot2a <- annotate_figure(gtot2, top=text_grob("Immune boosting model", size=14))
+gtot2a <- annotate_figure(gtot2, top=text_grob("Polarized vaccination model", size=14))
 
 gtot3 <- egg::ggarrange(g3, g6, nrow=2, draw=FALSE)
-gtot3a <- annotate_figure(gtot3, top=text_grob("Polarized vaccination model", size=14))
+gtot3a <- annotate_figure(gtot3, top=text_grob("Immune boosting model", size=14))
 
 tikz(file = "figure_simulation_compare.tex", width = 12, height = 6, standAlone = T)
 grid.arrange(gtot1a, gtot2a, gtot3a, ncol=3)
