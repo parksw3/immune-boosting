@@ -4,6 +4,8 @@ current: target
 -include target.mk
 Ignore = target.mk
 
+pardirs = ""
+
 # -include makestuff/perl.def
 
 vim_session:
