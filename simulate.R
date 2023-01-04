@@ -1,3 +1,4 @@
+library(shellpipes)
 simulate_model_generalized <- function(R0=2.5,
                                        VE_L=0,
                                        VE_P=0,
@@ -43,3 +44,5 @@ model_generalized <- function(t, y, par) {
     list(c(dS, dIu, dRu, dV, dIv, dRv, dCu, dCv), inc_s = lambda * S, inc_v = (1-VE_L) * lambda * V)
   })
 }
+
+saveEnvironment()

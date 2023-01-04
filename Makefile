@@ -4,7 +4,7 @@ current: target
 -include target.mk
 Ignore = target.mk
 
-pardirs = ""
+## pardirs = ""
 
 # -include makestuff/perl.def
 
@@ -15,9 +15,12 @@ vim_session:
 
 Sources += $(wildcard *.R)
 
-autowrapR = defined
+autopipeR = defined
 
-## immune_boosting.pdf: immune_boosting.tex
+simulation_compare.Rout: simulation_compare.R simulate.rda
+figure_simulation_compare.Rout: figure_simulation_compare.R color_palette.R simulate.R
+## figure_simulation_efficacy.R
+## figure_simulation_generalized.R
 
 ######################################################################
 
