@@ -12,6 +12,7 @@ vim_session:
 	bash -cl "vmt"
 
 ######################################################################
+
 Sources += immune_boosting.tex
 ## immune_boosting.pdf: immune_boosting.tex
 
@@ -25,7 +26,10 @@ simulation_compare.Rout: simulation_compare.R simulate.rda
 figure_simulation_compare.Rout: figure_simulation_compare.R simulation_compare.rda color_palette.rda
 ## figure_simulation_compare.Rout.tikz.pdf: figure_simulation_compare.R
 ## figure_simulation_efficacy.R
-## figure_simulation_generalized.R
+
+figure_simulation_generalized.Rout: figure_simulation_generalized.R simulate.rda color_palette.rda
+
+figure_simulation_generalized.%.tikz:
 
 ######################################################################
 

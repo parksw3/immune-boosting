@@ -3,7 +3,7 @@ library(tidyr)
 library(deSolve)
 library(ggplot2); theme_set(theme_bw())
 library(ggpubr)
-library(gridExtra)
+library(gridExtra, warn.conflicts=FALSE)
 library(tikzDevice)
 
 library(shellpipes)
@@ -93,11 +93,12 @@ g2 <- ggplot(resdata) +
     panel.grid = element_blank()
   )
 
-startGraphics(otype="tikz", ext=".vaccinated.tikz" width = 8, height = 6, standAlone = T)
+startGraphics(otype="tikz", ext="vaccinated.tikz"
+	, width = 8, height = 6, standAlone = T
+)
 print(g1)
-quit()
 
-tikz(file = "figure_simulation_generalized_unvaccinated.tex", width = 8, height = 6, standAlone = T)
-g2
-dev.off()
-tools::texi2dvi('figure_simulation_generalized_unvaccinated.tex', pdf = T, clean = T)
+startGraphics(otype="tikz", ext="unvaccinated.tikz"
+	, width = 8, height = 6, standAlone = T
+)
+print(g2)
