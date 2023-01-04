@@ -18,7 +18,7 @@ Sources += $(wildcard *.R)
 autopipeR = defined
 
 simulation_compare.Rout: simulation_compare.R simulate.rda
-figure_simulation_compare.Rout: figure_simulation_compare.R color_palette.R simulate.R
+figure_simulation_compare.Rout: figure_simulation_compare.R simulation_compare.rda color_palette.R
 ## figure_simulation_efficacy.R
 ## figure_simulation_generalized.R
 

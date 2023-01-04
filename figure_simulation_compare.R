@@ -8,6 +8,8 @@ library(tikzDevice)
 ## sessionInfo()
 ## quit()
 
+library(shellpipes)
+loadEnvironments()
 startGraphics(otype="tikz", width = 12, height = 6, standAlone = T)
 
 source("color_palette.R")
