@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[top=1in,left=1in, right = 1in, footskip=1in]{geometry}
+\usepackage[top=1in,left=1.25in, right = 1.25in, bottom=1in, footskip=1in]{geometry}
 
 \usepackage{graphicx}
 \usepackage{xspace}
@@ -241,7 +241,7 @@ The polarized vaccination model predicts a lower seroprevalence (79.9\%), reflec
 Interestingly, the immune boosting model predicts intermediate levels of seroprevalence overall (85.6\%).
 
 \begin{figure}[!th]
-\includegraphics[width=\textwidth]{figure_simulation_compare.pdf}
+\includegraphics[width=\textwidth]{figure_simulation_compare.Rout.tikz.pdf}
 \caption{
 \textbf{Simulations of three different vaccination models.}
 (A--C) Prevalence of infection among unvaccinated ($I_u$, blue solid) and vaccinated ($I_v$, orange dashed) individuals.
@@ -265,6 +265,8 @@ As we increase $\VE_P$ (and decrease $\VE_L$ accordingly), the generalized vacci
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{figure_simulation_generalized_vaccinated.pdf}
+figure_simulation_generalized.R:tikz(file = "figure_simulation_generalized_vaccinated.tex", width = 8, height = 6, standAlone = T)
+figure_simulation_generalized.R:tools::texi2dvi('figure_simulation_generalized_vaccinated.tex', pdf = T, clean = T)
 \caption{
 \textbf{Sensitivity of the final size of an outbreak among vaccinated individuals to assumptions about vaccine-derived immunity}
 Final size of an outbreak was calculated by simulating the generalized vaccination model for 220 days. 

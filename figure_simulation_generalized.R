@@ -5,8 +5,9 @@ library(ggplot2); theme_set(theme_bw())
 library(ggpubr)
 library(gridExtra)
 library(tikzDevice)
-source("simulate.R")
-source("color_palette.R")
+
+library(shellpipes)
+loadEnvironments()
 
 viridis::viridis(4, begin=0.1, alpha=0.4)
 
@@ -92,10 +93,9 @@ g2 <- ggplot(resdata) +
     panel.grid = element_blank()
   )
 
-tikz(file = "figure_simulation_generalized_vaccinated.tex", width = 8, height = 6, standAlone = T)
-g1
-dev.off()
-tools::texi2dvi('figure_simulation_generalized_vaccinated.tex', pdf = T, clean = T)
+startGraphics(otype="tikz", ext=".vaccinated.tikz" width = 8, height = 6, standAlone = T)
+print(g1)
+quit()
 
 tikz(file = "figure_simulation_generalized_unvaccinated.tex", width = 8, height = 6, standAlone = T)
 g2
