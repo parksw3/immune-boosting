@@ -15,30 +15,7 @@ Sources += $(wildcard *.R)
 
 autowrapR = defined
 
-Sources += immune_boosting.tex
 ## immune_boosting.pdf: immune_boosting.tex
-
-Ignore += figure_simulation_generalized.tex
-Ignore += figure_simulation_generalized.pdf
-
-figure_simulation_generalized.tex: figure_simulation_compare.Rout ;
-figure_simulation_generalized.pdf: figure_simulation_generalized.Rout ;
-figure_simulation_generalized_vaccinated.pdf: figure_simulation_generalized.Rout ;
-
-Ignore += figure_simulation_compare.pdf
-Ignore += figure_simulation_compare.tex
-figure_simulation_compare.Rout: figure_simulation_compare.R
-
-Ignore += figure_simulation_efficacy.pdf
-Ignore += figure_simulation_efficacy.tex
-figure_simulation_efficacy.pdf: figure_simulation_efficacy.Rout ;
-
-######################################################################
-
-## Haven't tracked this logic yet
-
-Ignore += figure_simulation_compare.tex figure_simulation_generalized_unvaccinated.tex figure_simulation_generalized_vaccinated.tex
-Ignore += *.deps.out
 
 ######################################################################
 

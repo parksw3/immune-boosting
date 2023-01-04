@@ -9,6 +9,8 @@ library(tikzDevice)
 ## sessionInfo()
 ## quit()
 
+startGraphics(otype="tikz", width = 12, height = 6, standAlone = T)
+
 source("simulate.R")
 source("color_palette.R")
 
@@ -154,7 +156,6 @@ gtot2a <- annotate_figure(gtot2, top=text_grob("Polarized vaccination model", si
 gtot3 <- egg::ggarrange(g3, g6, nrow=2, draw=FALSE)
 gtot3a <- annotate_figure(gtot3, top=text_grob("Immune boosting model", size=14))
 
-tikz(file = "figure_simulation_compare.tex", width = 12, height = 6, standAlone = T)
 grid.arrange(gtot1a, gtot2a, gtot3a, ncol=3)
 dev.off()
 tools::texi2dvi('figure_simulation_compare.tex', pdf = T, clean = T)
