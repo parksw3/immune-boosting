@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[top=1in,left=1.25in, right = 1.25in, bottom=1in, footskip=1in]{geometry}
+\usepackage[top=1in,left=1.25in, right = 1.25in, bottom=1in]{geometry}
 
 \usepackage{graphicx}
 \usepackage{xspace}
@@ -264,9 +264,7 @@ On the other hand, the final size predicted by the immune boosting model cannot 
 As we increase $\VE_P$ (and decrease $\VE_L$ accordingly), the generalized vaccination model collapses to the polarized vaccination model, and the final size becomes insensitive to the boosting parameter $q$.
 
 \begin{figure}[!th]
-\includegraphics[width=\textwidth]{figure_simulation_generalized_vaccinated.pdf}
-figure_simulation_generalized.R:tikz(file = "figure_simulation_generalized_vaccinated.tex", width = 8, height = 6, standAlone = T)
-figure_simulation_generalized.R:tools::texi2dvi('figure_simulation_generalized_vaccinated.tex', pdf = T, clean = T)
+\includegraphics[width=\textwidth]{figure_simulation_generalized.Rout.vaccinated.tikz.pdf}
 \caption{
 \textbf{Sensitivity of the final size of an outbreak among vaccinated individuals to assumptions about vaccine-derived immunity}
 Final size of an outbreak was calculated by simulating the generalized vaccination model for 220 days. 
@@ -333,7 +331,7 @@ in trial settings, where incidence is relatively low, this assumption may hold.
 But estimating vaccine effectiveness from real outbreaks is expected to be more difficult especially when the disease is spreading rapidly and causing susceptible depletion.
 
 \begin{figure}[!th]
-\includegraphics[width=\textwidth]{figure_simulation_efficacy.pdf}
+\includegraphics[width=\textwidth]{figure_simulation_efficacy.Rout.tikz.pdf}
 \caption{
 \textbf{Estimates of vaccine effectiveness using reduction in cumulative incidence (A) and hazard (B) over time.}
 Vaccine effectiveness was calculated by simulating the generalized vaccination model for 220 days. 

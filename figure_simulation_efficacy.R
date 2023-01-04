@@ -5,8 +5,10 @@ library(ggplot2); theme_set(theme_bw())
 library(ggpubr)
 library(gridExtra)
 library(tikzDevice)
-source("simulate.R")
-source("color_palette.R")
+
+library(shellpipes)
+loadEnvironments()
+startGraphics(otype="tikz", width = 8, height = 6, standAlone = T)
 
 viridis::viridis(4, begin=0.1, alpha=0.4)
 
@@ -97,7 +99,4 @@ g2 <- ggplot(resdata) +
     panel.grid = element_blank()
   )
 
-tikz(file = "figure_simulation_efficacy.tex", width = 8, height = 6, standAlone = T)
 ggarrange(g1, g2, nrow=2, common.legend = TRUE)
-dev.off()
-tools::texi2dvi('figure_simulation_efficacy.tex', pdf = T, clean = T)

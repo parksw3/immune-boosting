@@ -24,12 +24,12 @@ autopipeR = defined
 
 simulation_compare.Rout: simulation_compare.R simulate.rda
 figure_simulation_compare.Rout: figure_simulation_compare.R simulation_compare.rda color_palette.rda
-## figure_simulation_compare.Rout.tikz.pdf: figure_simulation_compare.R
-## figure_simulation_efficacy.R
+
+figure_simulation_efficacy.Rout: figure_simulation_efficacy.R simulate.rda color_palette.rda
 
 figure_simulation_generalized.Rout: figure_simulation_generalized.R simulate.rda color_palette.rda
 
-figure_simulation_generalized.%.tikz:
+figure_simulation_generalized.Rout.%.tikz: figure_simulation_generalized.Rout ;
 
 ######################################################################
 
