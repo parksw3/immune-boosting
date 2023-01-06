@@ -13,8 +13,6 @@ vim_session:
 
 ######################################################################
 
-dotdir.vdtest:
-
 Sources += immune_boosting.tex
 ## immune_boosting.pdf: immune_boosting.tex
 
