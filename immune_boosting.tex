@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[top=1in,left=1.25in, right = 1.25in, bottom=1in]{geometry}
+%% \usepackage[top=1in,left=1.25in, right = 1.25in, bottom=1in]{geometry}
 
 \usepackage{graphicx}
 \usepackage{xspace}
@@ -107,6 +107,8 @@ Sang Woo Park\textsuperscript{1,*}, Chadi Saad-Roy, ???, Bryan T Grenfell, Jonat
 
 \section*{Introduction}
 
+\jd{Invite Mike Li? Would be nice to include him more, and he played an influential role in getting me to start moving this forward.}
+
 Vaccination plays a critical role in controlling infectious disease outbreaks by protecting against new infections \citep{iwasaki2020and}.
 In particular, when a critical vaccination threshold is reached, the basic reproduction number (defined as the average number of secondary infections caused by an infected individual) is reduced to below 1, and future epidemics can be prevented \citep{anderson1985vaccination}.
 But reaching a critical vaccination threshold can be challenging, and vaccines often provide imperfect protections \citep{gandon2003imperfect,anderson2020challenges}.
@@ -149,6 +151,13 @@ Subscripts $u$ and $v$ represents unvaccinated and vaccinated.
 \label{fig:diagram}
 }
 \end{figure}
+
+\jd{I am trying to think about how to discuss some really basic issues, specifically homogeneous mixing and no loss of immunity. Maybe with a ¶ below the model and \emph{before} we mention that the vaccine is leaky?}
+
+\jd{It's pretty cool that I can just type the paragraph mark. I still haven't found a way to make tex recognize real greek letters, though.}
+
+%% \jd{$α$ does not work!}
+%% \jd{Plain α also does not work!}
 
 We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $1-\VEL$:
 \begin{align}
@@ -232,12 +241,14 @@ For the leaky vaccination model and the immune boosting model, we set $S_v(0) = 
 
 \fref{simulation} compares epidemiological (A--C) and serological (D--F) trajectories predicted by three models (leaky vaccination model, polarized vaccination model, and immune boosting model).
 As explained earlier, the leaky vaccination model predicts a larger outbreak with a slower decay rate among vaccinated individuals than predicted by both the polarized vaccination and immune boosting models;
+\jd{Not following decay rate.}
 the latter two models predict identical epidemic trajectories.
 The leaky vaccination model also predicts a larger outbreak among unvaccinated individuals because a larger outbreak among vaccinated individuals causes unvaccinated individuals to also experience a greater forces of infection over time.
 
 We also find that all three models predict different serological trajectories. (\fref{simulation}D--F). 
 Here, we do not distinguish the sources of antibodies (whether derived from natural infections or vaccinations) and assume that individuals in $R_u$, $S_v$, and $R_v$ compartments are seropositive, except in the case of polarized vaccination:
 in such case, we do not expect individuals in the $S_v$ compartment to be seropositive because they have not retained any immunity from the vaccination.
+\jd{This seems too strong, let's discuss.}
 Under these assumptions, the leaky vaccination model predicts the largest outbreak and therefore the highest levels of seroprevalence (89.7\% by the end of the simulation).
 The polarized vaccination model predicts a lower seroprevalence (79.9\%), reflecting the lower final size.
 Interestingly, the immune boosting model predicts intermediate levels of seroprevalence overall (85.6\%).
@@ -277,13 +288,15 @@ All other parameters are the same as in \fref{simulation}.
 \end{figure}
 
 So far, we have limited our discussions to vaccine efficacy, which we defined as the proportion of people protected from their first challenge. 
-We distinguish this from vaccine \textit{effectiveness}, which is measured in a population.
-Several factors can cause vaccine effectiveness to systematically differ from vaccine efficacy---for example, vaccinated individuals can be challenged multiple times and still remain susceptible in the leaky vaccination model.
+We distinguish this from vaccine \textit{effectiveness}, which is measured empirically. 
+Here, we compare two ways of estimating vaccine effectiveness: using cumulative incidence or instantaneous hazard.
+Several factors can cause vaccine effectiveness to systematically differ from vaccine efficacy---in our case, the main reason is the fact that some vaccinated individuals may be challenged multiple times.
 
-Here, we compare two ways of estimating vaccine effectiveness: the reduction in cumulative incidence and instantaneous hazard.
-The cumulative incidence refers to the cumulative proportion of infections among unvaccinated and vaccinated individuals; 
+\jd{What about multiply infected people? Probably best to deal with this above (directly address that we are modeling a “single epidemic” which specifically means neglecting loss of immunity and multiple infections.}
+Cumulative incidence refers to the cumulative proportion of infections among unvaccinated and vaccinated individuals; 
 this is typically used for measuring the vaccine effectiveness from real-life outbreaks \citep{farrington1993estimation}.
-To calculate the reduction in cumulative incidence, we add two additional compartments, which keep track of cumulative incidence among unvaccinated $C_u$ and vaccinated $C_v$ individuals:
+\jd{Should we talk about time interval?}
+To calculate the reduction in cumulative incidence in our model, we add two additional compartments, which keep track of cumulative incidence among unvaccinated $C_u$ and vaccinated $C_v$ individuals:
 \begin{align}
 \frac{\dd C_u}{\dd t} &= \lambda S_u\\
 \frac{\dd C_v}{\dd t} &= (1-\VEL) \lambda S_v
