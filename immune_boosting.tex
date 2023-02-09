@@ -128,7 +128,7 @@ Both models represent simplifications of reality.
 The leaky model in particular overlooks a potentially important mechanism: individuals in this model do not lose any susceptibility when (implicitly) exposed to a challenge that does not result in infection. 
 In fact, vaccinated individuals who successfully fight off exposures can experience immune boosting, thus becoming less susceptible to future infections without becoming infectious or developing symptoms from the exposure \citep{lavine2011natural,yang2020waning}.
 
-\jd{I guess this change implies a slight rethinking of the boosting model (adding $q$ at that stage instead of the next). We should discuss this.}
+%% \jd{I guess this change implies a slight rethinking of the boosting model (adding $q$ at that stage instead of the next). We should discuss this.}
 In this study, we compare different approaches to dynamical modeling of vaccination and immunity.
 First, we construct a model with leaky vaccination and boosting, and show that the transmission dynamics of this model can bridge from the dynamics of the standard leaky model (with no boosting) to those of the polarized model (with perfect boosting). 
 %% In doing so, we show that the polarized vaccination and immune boosting models predict identical epidemic dynamics but different serological dynamics.
@@ -153,11 +153,7 @@ Subscripts $u$ and $v$ represents unvaccinated and vaccinated.
 \end{figure}
 
 \jd{I am trying to think about how to discuss some really basic issues, specifically homogeneous mixing and no loss of immunity. Maybe with a ¶ below the model and \emph{before} we mention that the vaccine is leaky?}
-
-\jd{It's pretty cool that I can just type the paragraph mark. I still haven't found a way to make tex recognize real greek letters, though.}
-
-%% \jd{$α$ does not work!}
-%% \jd{Plain α also does not work!}
+\jd{I currently think 2023 Feb 09 (Thu) that this is related to the other comments about time scale and loss of immunity.} 
 
 We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $1-\VEL$:
 \begin{align}
