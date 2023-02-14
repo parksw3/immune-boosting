@@ -67,11 +67,11 @@
     \path[->] (Iv4) edge node [above] {$\gamma_v$} (Rv4);
     \node [below=0.6cm of S2, white] (tmp1) {};
     \node [below=0.6cm of Rs, white] (tmp2) {};
-    \path[->, line width=1.2mm, shorten >= 16pt, shorten <= 16pt] (tmp1) edge node [above] {$\bm{q=0, \theta=1}$} (tmp2);
-    \path[->, line width=1.2mm, shorten >= 4pt, shorten <= 4pt] (Rv2) edge node [sloped, above] {$\bm{q=1, \theta=1}$} (S3);
-    \path[->, line width=1.2mm, shorten >= 4pt, shorten <= 4pt] (Rs2) edge node [sloped, below] {$\bm{\theta=p}$} (V4);
+    \path[->, line width=1.2mm, shorten >= 16pt, shorten <= 16pt] (tmp1) edge node [above] {$\bm{q=0, \VE_P=0}$} (tmp2);
+    \path[->, line width=1.2mm, shorten >= 4pt, shorten <= 4pt] (Rv2) edge node [sloped, above] {$\bm{q=1, \VE_P=0}$} (S3);
+    \path[->, line width=1.2mm, shorten >= 4pt, shorten <= 4pt] (Rs2) edge node [sloped, below] {$\bm{q=0, \VE_L=0}$} (V4);
     \path[-{Straight Barb[left]}, line width=1.2mm, shorten >= 30pt, shorten <= 30pt] ([xshift=-1mm]Is3.north) edge node [sloped, above] {} ([xshift=-1mm]Iv4.south);
-    \path[-{Straight Barb[left]}, line width=1.2mm, shorten >= 30pt, shorten <= 30pt] ([xshift=1mm]Iv4.south) edge node [sloped, above=0.2cm] {\textbf{Equivalent transmission}\\\textbf{dynamics but different}\\\textbf{serological dynamics}} ([xshift=1mm]Is3.north);
+    \path[-{Straight Barb[left]}, line width=1.2mm, shorten >= 30pt, shorten <= 30pt] ([xshift=1mm]Iv4.south) edge node [sloped, above=0.2cm] {\textbf{Equivalent transmission}\\\textbf{dynamics but different}\\\textbf{serological dynamics}\\\textbf{when }$\bm{\VE_P=\VE_L}$} ([xshift=1mm]Is3.north);
     \node[above=0.2cm of Is] {\textbf{Leaky vaccination model}};
     \node[above=0.2cm of Is2] {\textbf{Generalized vaccination model}};
     \node[above=0.2cm of Is3] {\textbf{Immune boosting model}};

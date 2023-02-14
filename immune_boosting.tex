@@ -5,6 +5,8 @@
 \usepackage{xspace}
 %\usepackage{adjustbox}
 
+\usepackage{afterpage}
+
 \usepackage{grffile}
 
 \newcommand{\comment}{\showcomment}
@@ -137,6 +139,7 @@ Finally, we use our framework to compare measures of vaccine efficacy.
 
 \section*{Mathematical models of vaccine-induced immunity}
 
+\afterpage{
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{figure_diagram_comb.pdf}
 \caption{
@@ -151,6 +154,7 @@ Subscripts $u$ and $v$ represents unvaccinated and vaccinated.
 \label{fig:diagram}
 }
 \end{figure}
+}
 
 Throughout the paper, we start by assuming that a population mixed homogeneously and that there is no loss of immunity.
 We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $1-\VEL$:
