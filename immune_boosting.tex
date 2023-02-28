@@ -426,7 +426,7 @@ We assume that a vaccinated individual's susceptibility $0 \leq p \leq 1$ follow
 \frac{\partial I_v(p)}{\partial t} &= p \lambda(t) S_v(p) - \gamma_v I_v(p) \\
 \frac{\dd R_v}{\dd t} &= \int_0^1 \left[ (1-p) \lambda(t) S_v(p) + \gamma_v I_v(p) \right]\dd p
 \end{align}
-Due immune boosting, $S_v(p)$ is always depleted at a per-capita rate of $\lambda(t)$ regardless of the values of $p$, meaning that the (normalized) distribution of $S_v(p)$ will always follow $f(p)$.
+Due to immune boosting, $S_v(p)$ is always depleted at a per-capita rate of $\lambda(t)$ regardless of the values of $p$, meaning that the (normalized) distribution of $S_v(p)$ will always follow $f(p)$.
 To obtain the dynamics of total prevalence $I_v = \int I_v(p) \dd p$, we can integrate $\partial I_v(p)/\partial t$ across $p$:
 \begin{align}
 \frac{\dd I_v}{\dd t} &=  \int_0^1\left[\frac{\partial I_v(p)}{\partial t}\right]\dd p\\
