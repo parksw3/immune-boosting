@@ -130,7 +130,6 @@ Both models represent simplifications of reality.
 The leaky model in particular overlooks a potentially important mechanism: individuals in this model do not lose any susceptibility when (implicitly) exposed to a challenge that does not result in infection. 
 In fact, vaccinated individuals who successfully fight off exposures can experience immune boosting, thus becoming less susceptible to future infections without becoming infectious or developing symptoms from the exposure \citep{lavine2011natural,yang2020waning}.
 
-%% \jd{I guess this change implies a slight rethinking of the boosting model (adding $q$ at that stage instead of the next). We should discuss this.}
 In this study, we compare different approaches to dynamical modeling of vaccination and immunity.
 First, we construct a model with leaky vaccination and boosting, and show that the transmission dynamics of this model can bridge from the dynamics of the standard leaky model (with no boosting) to those of the polarized model (with perfect boosting). 
 %% In doing so, we show that the polarized vaccination and immune boosting models predict identical epidemic dynamics but different serological dynamics.
@@ -156,7 +155,7 @@ Subscripts $u$ and $v$ represents unvaccinated and vaccinated.
 \end{figure}
 }
 
-\jd{Revisit:} Throughout the paper, we start by assuming that a population mixed homogeneously and that there is no loss of immunity.
+Throughout the paper, we assume that a population mixes homogeneously and that there is no loss of immunity.
 We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $1-\VEL$:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
@@ -234,8 +233,7 @@ As an example, we consider a homogeneously mixing population. In this case, the 
 \end{equation}
 For simplicity, we assume that both unvaccinated and vaccinated individuals transmit at the same rate $\beta_u = \beta_v =0.5/\mathrm{day}$ for an average of $1/\gamma=5~\mathrm{days}$.
 We also assume that $\phi = 0.5$ proportion of individuals are vaccinated at the beginning of an epidemic with 60\% efficacy ($\VEP=\VEL=0.6$) and that vaccination does not continue during the outbreak ($\rho = 0$).
-\jd{You may have confused yourself by using 1/2?. We should have the same formula for all cases (second s.~below can be deleted, or made into a parenthetical). $1-\phi$ does not appear (when $\phi\to0$ all of the vax classes $\to0$); it should be $\phi$ below.}
-To keep the parameterizations consistent, we set $S_v(0) = (1-\phi) (1-\VEP)$ and $R_v(0) = \phi \VEP$ as our initial condition for the polarized vaccination model.
+To keep the parameterizations consistent, we set $S_v(0) = \phi (1-\VEP)$ and $R_v(0) = \phi \VEP$ as our initial condition for the polarized vaccination model.
 For the leaky vaccination model and the immune boosting model, we set $S_v(0) = 1-\phi$ and $R_v(0) = \phi$.
 
 \fref{simulation} compares epidemiological (A--C) and immune-status (D--F) trajectories predicted by three models (leaky vaccination model, polarized vaccination model, and immune boosting model).
@@ -246,11 +244,9 @@ The leaky vaccination model also predicts a larger outbreak among unvaccinated i
 We also find that all three models predict different immune-status trajectories. (\fref{simulation}D--F). 
 Here, we do not distinguish the sources of antibodies (whether derived from natural infections or vaccinations) and assume that individuals in $R_u$, $S_v$, and $R_v$ compartments are seropositive, except in the case of polarized vaccination:
 in such case, we assume individuals in the $S_v$ compartment are seronegative because they have not retained any immunity from the vaccination.
-\jd{I'm a bit worried about this; how can we get more info.}
 Under these assumptions, the leaky vaccination model predicts the largest outbreak and therefore the highest levels of seroprevalence (89.7\% by the end of the simulation).
 The polarized vaccination model predicts a lower seroprevalence (79.9\%), reflecting the lower final size.
-Interestingly, the immune boosting model predicts intermediate levels of seroprevalence overall (85.6\%).
-\jd{Why interesting? It's directly connected to the assumption above, among other things.}
+The immune boosting model predicts intermediate levels of seroprevalence overall (85.6\%).
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{figure_simulation_compare.Rout.tikz.pdf}
@@ -258,7 +254,7 @@ Interestingly, the immune boosting model predicts intermediate levels of seropre
 \textbf{Simulations of three different vaccination models.}
 (A--C) Prevalence of infection among unvaccinated ($I_u$, blue solid) and vaccinated ($I_v$, orange dashed) individuals.
 (D--F) Immune status over time (compartments $R_u$, $S_v$, and $R_v$).
-The $S_v$ compartment is not included in the polarized vaccination model because it represents a set of individuals who have not retained any immunity from vaccination. \jd{see parallel note, note also that this gives us trouble with limits if we are thinking about limits}
+The $S_v$ compartment is not included in the polarized vaccination model because it represents a set of individuals who have not retained any immunity from vaccination.
 Simulations are performed assuming $\beta_u = \beta_v =0.5/\mathrm{day}$ for an average infectious periods of $1/\gamma=5~\mathrm{days}$.
 We also assume that $\phi = 0.5$ proportion of individuals are vaccinated at the beginning of an epidemic with 60\% efficacy ($\VEP=\VEL=0.6$) and that vaccination does not continue during the outbreak ($\rho = 0$).
 \label{fig:simulation}
@@ -279,10 +275,8 @@ As we increase \VEP\ (and decrease \VEL\ accordingly), the generalized vaccinati
 \includegraphics[width=\textwidth]{figure_simulation_generalized.Rout.vaccinated.tikz.pdf}
 \caption{
 \textbf{Sensitivity of the final size of an outbreak among vaccinated individuals to assumptions about vaccine-derived immunity}
-Final size of an outbreak was calculated by simulating the generalized vaccination model for 220 days. 
-\jd{WHAT? \VE\ on x-axis, right? We assume a combined efficacy of $\VE = 0.6$ throughout.}
+Final size of an outbreak was calculated by simulating the generalized vaccination model for 220 days.
 All other parameters are the same as in \fref{simulation}.
-\jd{Yellow in r-h panels is misleading. Can we make black N/A or something? Are all of the others (non-black) colors?}
 \label{fig:sensitivity}
 }
 \end{figure}
@@ -312,13 +306,12 @@ Then, the estimated vaccine effectiveness at time $t$ corresponds to:
 
 On the other hand, instantaneous hazard refers to the per-capita rate at which unvaccinated $h_u(t)$ and vaccinated $h_v(t)$ individuals get infected if they have not yet been infected yet.
 These quantities can be calculated by diving the incidence of new infection by the number of uninfected individuals.
-However, calculating the per-capita rate of infection among vaccinated individuals can be tricky due to the presence of boosted individuals---in practice, differentiating boosted individuals from unexposed, uninfected individuals may not be possible without additional data, such as measurements of antibody titers before and after potential exposures.
-\jd{This is getting deep, I guess we should start by assuming that observation is perfect, no?}
-Therefore, when boosted individuals cannot be differentiated from unexposed individuals, boosted individuals would still be included in the denominator for the calculation of the per-capita rate of infection $h_v(t)$ among vaccinated individuals:
+The per-capita rate of infection $h_v(t)$ among vaccinated individuals in then given by:
 \begin{equation}
 h_v(t) = \frac{(1-\VEL) \lambda(t) S_v(t)}{S_v(0) - C_v(t)},
 \end{equation}
-where $S_v(0) - C_v(t) \geq S_v(t)$ because vaccinated individuals can leave the $S_v(t)$ compartment via boosting.
+where $S_v(0) - C_v(t) \geq S_v(t)$ because vaccinated individuals can leave the $S_v(t)$ compartment via boosting;
+in other words, we are assuming that boosting does not count as infection.
 The per-capita rate of infection $h_u(t)$ among unvaccinated individuals is straightforward: 
 \begin{equation}
 h_u(t) = \frac{\lambda(t) S_u(t)}{S_u(t)} = \lambda(t).
@@ -345,8 +338,6 @@ More generally, we expect both estimates to give unbiased estimates as long as t
 in trial settings, where incidence is relatively low, this assumption may hold.
 But estimating vaccine effectiveness from real outbreaks is expected to be more difficult especially when the disease is spreading rapidly and causing susceptible depletion.
 
-\jd{I might need to be talked through some of this; I'm leaning towards leaving hazard-based stuff mostly out. We can say that it gives the right answer in theory, but is hard to do and we have the problem of estimating susceptibles... Actually, I now think that we really don't need any of this. Effectiveness should be based on who was vaccinated (within some time frame, but we can ignore that), not what we think their immune status is.}
-
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{figure_simulation_efficacy.Rout.tikz.pdf}
 \caption{
@@ -359,8 +350,6 @@ All other parameters are the same as in \fref{simulation}.
 \label{fig:efficacy}
 }
 \end{figure}
-
-\jd{No, we definitely need to discuss. I at least need to understand 4b before we decide what to do about it!}
 
 \section*{Discussion}
 
