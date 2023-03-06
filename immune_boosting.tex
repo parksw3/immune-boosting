@@ -99,7 +99,7 @@
 }
 \newline
 \\
-Sang Woo Park\textsuperscript{1,*}, Michael Li, Chadi Saad-Roy, ???, Bryan T Grenfell, Jonathan Dushoff
+Sang Woo Park\textsuperscript{1,*}, Michael Li, Chadi Saad-Roy, ???, C. Jessica T. Metcalf, Bryan T. Grenfell, Jonathan Dushoff
 \\
 \bigskip
 \textbf{1} Department of Ecology and Evolutionary Biology, Princeton University, Princeton, NJ, USA
@@ -108,6 +108,20 @@ Sang Woo Park\textsuperscript{1,*}, Michael Li, Chadi Saad-Roy, ???, Bryan T Gre
 
 *Corresponding author: swp2@princeton.edu
 \end{flushleft}
+
+\section*{Abstract}
+
+Two models of vaccination have been previously proposed.
+The leaky vaccination model assumes that all vaccinated individuals experience a reduced force of infection by the same amount.
+The polarized vaccination model assumes that some fraction of vaccinated individuals are completely protected, while the remaining fraction remains completely susceptible;
+this seemingly extreme assumption causes the polarized model to always predict lower final size than the leaky model under the same vaccine efficacy.
+However, the leaky model also makes an implicit, unrealistic assumption: 
+vaccinated individuals who are exposed but not infected remain susceptible independent of previous exposures.
+To resolve the independence assumption, we introduce an immune boosting mechanism, through which vaccinated, yet susceptible, individuals can gain protection without developing a transmissible infection.
+The boosting model further predicts identical epidemic dynamics as the polarized vaccination model, thereby bridging the differeces between two models.
+We further develop a generalized vaccination model to explore how the assumptions of immunity affect epidemic dynamics and estimates of vaccine effectiveness.
+
+\pagebreak
 
 \section*{Introduction}
 
@@ -155,7 +169,8 @@ Subscripts $u$ and $v$ represents unvaccinated and vaccinated.
 \end{figure}
 }
 
-Throughout the paper, we assume that a population mixes homogeneously and that there is no loss of immunity.
+Throughout the paper, we assume that a population mixes homogeneously and that there is no loss of immunity;
+in other words, we are focusing on a single outbreak.
 We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $1-\VEL$:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
@@ -201,11 +216,14 @@ Instead, the immune boosting model assumes that unsuccessful challenges elicit i
 \end{align}
 In this model, both unvaccinated and vaccinated individuals are subject to identical forces of infection, which represent the per capita rate of challenges, but the outcome of challenges differ.
 
+
+
 The epidemiological dynamics (i.e., trajectories of $I_u$ and $I_v$) predicted by the immune-boosting model (based on leaky vaccination) and the polarized vaccination model are identical: 
 both models assume that individuals become vaccinated at rate $\rho$ and move out of the $S_v$ compartment at rate $\lambda$ and only differ in when individuals get sorted based on the result of their next challenge.
 This equivalence allows us to bridge the difference between the leaky and polarized vaccination models.
-The equivalence holds regardless of infection characteristics of vaccinated individuals (i.e., the duration of their infection and their transmissibility);
-however, it may not necessarily hold when immunity wanes, as we discuss later.
+The equivalence holds regardless of infection characteristics of vaccinated individuals (i.e., the duration of their infection and their transmissibility).
+In Supplementary Materials, we further show that epidemic dynamics are independent of the shape of the susceptibility distribution under immune boosting (and instead only depends on the mean susceptibility);
+in contrast, an earlier study showed that epidemic dynamics are sensitive to the susceptibility distribution under a leaky vaccination model \citep{gomes2014missing}.
 
 Finally, we consider a generalized model that encompasses all three mechanisms above (dichotomous vaccine responses, partial protection, and immune boosting):
 \begin{align}
@@ -354,45 +372,29 @@ All other parameters are the same as in \fref{simulation}.
 \section*{Discussion}
 
 Understanding the degree to which vaccination provides protection against infections is critical to predicting epidemic dynamics.
-Two models of vaccine-derived immunity have been previously proposed: leaky and polarized vaccination models.
 The polarized model has been largely neglected in epidemiological modeling, in part due to its apparently extreme assumption that a fraction of vaccinated individuals do not receive any protection. 
-But the leaky vaccination model also makes an unrealistic assumption: that vaccinated individuals who are exposed to infections can still remain susceptible, independent of previous exposures; 
-a such assumption causes the leaky vaccination model to always predict a larger epidemic final size.
+But the leaky vaccination model also makes an unrealistic assumption: that vaccinated individuals who are exposed to infections can still remain susceptible, independent of previous exposures. 
+A such assumption causes the leaky vaccination model to always predict a larger epidemic final size.
 This difference can be bridged with immune boosting. With boosting, vaccinated individuals can attain protection without developing a transmissible infection, and infections are no longer independent of their previous exposures.
 In particular, a leaky vaccine model with complete boosting predicts identical epidemic dynamics to the polarized vaccination model because individuals in both cases are completely immune after surviving a single challenge. 
 
-Even though immune boosting and polarized vaccination models predict the same epidemic dynamics, they have different immune-status dynamics.
+Even though immune boosting and polarized vaccination models predict the same epidemic dynamics, they may have different immune-status dynamics.
 We investigate both aspects using a generalized vaccination model, which encompasses the mechanisms of all three models.
-The generalized vaccination model includes two additional parameters, which determine the amount of immune boosting and the proportion of individuals that remain partially susceptible after vaccination (rather than fully protected).
+The generalized vaccination model includes one additional parameters, which determine the amount of immune boosting.
 We use this model to show that the epidemic dynamics are most sensitive to the assumptions about vaccine-derived immunity at a intermediate vaccine efficacy.
 
-Previous studies have tried to understand the differences between leaky and polarized vaccination models using arguments based on heterogeneity in susceptibility.
-For example, leaky vaccination represents one extreme in which everyone has identical susceptibility;
-polarized vaccination represents another extreme in which vaccinated individuals are either completely susceptible or not susceptible.
-\cite{gomes2014missing} tried to reconcile these two assumptions by using a smooth distribution of susceptibility that changes from a delta distribution (leaky vaccination) to a polarized distribution;
-however, they found that the predicted epidemic dynamics do not converge even though the distributions converge.
-Our framework provides a simple explanation for this discrepancy:
-regardless of the shape of the distribution of susceptibility, the leaky vaccination model always assumes that the infection events are independent of previous exposures.
-On the other hand, the polarized distribution scenario no longer assumes independence because all exposures result in successful infections (for susceptible, vaccinated individuals).
-In fact, the shape of the susceptibility distribution does not matter under immune boosting.
-In Supplementary Materials, we provide a mathematical proof that the epidemic dynamics only depend on the mean susceptibility and are independent of the shape of the susceptibility distribution when immune boosting is included in the leaky vaccination model; we also present simulations to further illustrate the equivalence.
-Therefore, we argue that neglecting immune boosting can lead to misleading conclusions about the effects of susceptibility heterogeneity in epidemic dynamics.\swp{maybe too strong?}
-\jd{This s.~is not too strong, but we need to figure out what to say about Gomes (see email).}
-
-\jd{Not sure that an estimate of effectiveness is “correct” or not based on whether it matches efficacy.}
-Finally, assumptions about vaccine-derived immunity also have important implications for estimating vaccine efficacy.
+Finally, assumptions about vaccine-derived immunity also have important implications for estimating vaccine effectiveness.
 Vaccine effectiveness can be estimated based on either the cumulative incidence or hazard rates.
 Cumulative-incidence-based effectiveness estimates will reflect initial efficacy for polarized vaccination and immune boosting models,
 whereas hazard-based estimates reflect efficacy for the leaky vaccination model.
 Neither method reflects efficacy for intermediate cases.
 These differences are driven by different assumptions about what happens when individuals are challenged more than once; thus both methods reflect efficacy when the cumulative hazard of infection is low. 
 Conversely, interpretation of effectiveness and efficacy estimates when a large fraction of unvaccinated individuals have been infected depends on (usually unknown) details of immune dynamics.
-\jd{I changed vaccinated above to unvaccinated! I think it's OK. Certainly I think vaccinated is too limiting.}
 
 We rely above on a simplifying assumption that natural infections (as well as polarized vaccination and immune boosting) provide complete protection against future infections.
 In practice, both infection- and vaccine-derived immunity wane over time for many pathogens \citep{heffernan2009implications,lewnard2018vaccine,perez2022}.
 When immunity wanes, polarized vaccination and immune boosting models may not necessarily predict identical dynamics.
-In particular, individuals who gain complete protection through polarized immunity immediately enter the $R_v$ compartment upon vaccination, whereas those who gain complete protection through immune boosting take longer to enter the $R_v$ compartment because they need to be exposed to infections.
+In particular, individuals who gain complete protection through polarized immunity may immediately enter the $R_v$ compartment upon vaccination, whereas those who gain complete protection through immune boosting take longer to enter the $R_v$ compartment because they need to be exposed to infections.
 These differences can translate to shorter delays between reinfection events for the polarized immunity model, which in turn can lead to dynamical differences at the population level.
 
 There are also other complexities that need to be considered.
