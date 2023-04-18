@@ -114,10 +114,10 @@ Sang Woo Park\textsuperscript{1,*}, Michael Li\textsuperscript{2}, C. Jessica E.
 
 \section*{Abstract}
 
-Two models of vaccination have been previously proposed.
+Two epidemiological models of vaccination have been proposed.
 The leaky vaccination model assumes that all vaccinated individuals experience a reduced force of infection by the same amount.
 The polarized vaccination model assumes that some fraction of vaccinated individuals are completely protected, while the remaining fraction remains completely susceptible;
-this seemingly extreme assumption causes the polarized model to always predict lower final size than the leaky model under the same vaccine efficacy.
+this seemingly extreme assumption causes the polarized model to always predict lower final epidemic size than the leaky model under the same vaccine efficacy.
 However, the leaky model also makes an implicit, unrealistic assumption: 
 vaccinated individuals who are exposed to infection but not infected remain just as susceptible as they were prior to exposures (i.e., independent of previous exposures).
 To resolve the independence assumption, we introduce an immune boosting mechanism, through which vaccinated, yet susceptible, individuals can gain protection without developing a transmissible infection.
@@ -128,8 +128,8 @@ We further develop a generalized vaccination model to explore how the assumption
 
 \section*{Introduction}
 
-Vaccination plays a critical role in controlling infectious disease outbreaks by protecting against new infections \citep{iwasaki2020and}.
-In particular, when a critical vaccination threshold is reached, the basic reproduction number (defined as the average number of secondary infections caused by an infected individual) is reduced to below 1, and future epidemics can be prevented \citep{anderson1985vaccination}.
+Vaccination plays a critical role in controlling infectious disease outbreaks by protecting against new infections and associated disease \citep{iwasaki2020and}.
+In particular, if a critical vaccination threshold is reached, the reproduction number (defined as the average number of secondary infections caused by an infected individual) is reduced to below 1, and future epidemics can be prevented \citep{anderson1985vaccination}.
 But reaching a critical vaccination threshold can be challenging, and vaccines often provide imperfect protections \citep{gandon2003imperfect,anderson2020challenges}.
 
 There are two main ways of modeling vaccines with imperfect protections: ``leaky'' and ``all-or-nothing'' vaccine \citep{smith1984assessment}.
@@ -205,7 +205,7 @@ For this model, the parameter \VEP\ is the measure of vaccine efficacy.
 
 These two widely used models have important dynamical differences. For a given set of shared parameters, and the same value of vaccine efficacy, initial dynamics will be the same, but the permanent protection of individuals in the polarized model will always result in a lower final outbreak size than the leaky vaccination model. When both \VE\ and the initial value of \Rx\ are relatively high, this difference is large.
 
-To better understand this gap, we consider a immune boosting model.
+To better understand this gap, we consider an immune boosting model.
 The leaky vaccination model assumes that vaccinated individuals are challenged with a lower force of infection $(1-\VEL) \lambda(t)$, but in general it is not realistic to assume that challenges would completely disappear only because of immune status.
 In a homogeneously mixing population, we expect both vaccinated and unvaccinated individuals to be challenged with identical forces of infection $\lambda$.
 Therefore, the leaky vaccination model implicitly assumes that vaccinated individuals have an \emph{independent} probability $(1-\VEL)$ of infection for every challenge.
@@ -304,7 +304,7 @@ All other parameters are the same as in \fref{simulation}.
 \end{figure}
 
 So far, we have limited our discussions to vaccine efficacy, which we defined as the proportion of people protected from their first challenge. 
-We distinguish this from vaccine \textit{effectiveness}, which is measured empirically. 
+We distinguish this from vaccine \textit{effectiveness}, which is measured empirically \citep{halloran2009design}. 
 Here, we compare two ways of estimating vaccine effectiveness: using cumulative incidence or instantaneous hazard.
 Several factors can cause vaccine effectiveness to systematically differ from vaccine efficacy---in our case, the main reason is the fact that some vaccinated individuals may be challenged multiple times.
 
@@ -385,8 +385,8 @@ In particular, the immune boosting model predicts identical epidemic dynamics to
 
 Even though immune boosting and polarized vaccination models predict the same epidemic dynamics, they may have different immune-status dynamics.
 We investigate both aspects using a generalized vaccination model, which encompasses the mechanisms of all three models.
-The generalized vaccination model includes one additional parameters, which determine the amount of immune boosting.
-We use this model to show that the epidemic dynamics are most sensitive to the assumptions about vaccine-derived immunity at a intermediate vaccine efficacy.
+The generalized vaccination model includes one additional parameter, which determines the amount of immune boosting.
+We use this model to show that the epidemic dynamics are most sensitive to the assumptions about vaccine-derived immunity at an intermediate vaccine efficacy.
 
 Finally, assumptions about vaccine-derived immunity also have important implications for estimating vaccine effectiveness.
 Vaccine effectiveness can be estimated based on either the cumulative incidence or hazard rates.
@@ -418,7 +418,7 @@ By developing this formalism, we both illustrate the spectrum of trajectories ex
 \section*{Supplementary Text}
 
 Here, we show that epidemic dynamics only depend on the mean susceptibility and are independent of the shape of the susceptibility distribution in the presence of immune boosting.
-To do so, consider a immune boosting model that allows for heterogeneity in vaccine-derived immunity.
+To do so, consider an immune boosting model that allows for heterogeneity in vaccine-derived immunity.
 We assume that a vaccinated individual's susceptibility $0 \leq p \leq 1$ follows some distribution $f(p)$:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
