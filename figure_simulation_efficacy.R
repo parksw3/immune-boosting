@@ -93,7 +93,7 @@ g2 <- ggplot(resdata) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
   scale_y_continuous("Estimated vaccine effecticacy (\\%)", limits=c(0, 100), expand=c(0, 0)) +
   facet_grid(~scenario) +
-  ggtitle("B. Harzard reduction") +
+  ggtitle("B. Hazard reduction") +
   scale_color_viridis_d("Proportion of challenges boosted, $q$") +
   theme(
     panel.grid = element_blank()

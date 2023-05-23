@@ -17,25 +17,25 @@ source("color_palette.R")
 viridis::viridis(4, begin=0.1, alpha=0.4)
 
 g1 <- ggplot(out1) +
-  geom_line(aes(time, Iu*100, col="$I_u$", lty="$I_u$"), lwd=2) +
-  geom_line(aes(time, Iv*100, col="$I_v$", lty="$I_v$"), lwd=2) +
-  scale_y_log10("Infected (\\%)", limits=c(1e-6, 0.2)*100, expand=c(0, 0)) +
+  geom_line(aes(time, inc_s, col="Unvaccinated", lty="Unvaccinated"), lwd=2) +
+  geom_line(aes(time, inc_v, col="Vaccinated", lty="Vaccinated"), lwd=2) +
+  scale_y_log10("Incidence (1/day)", limits=c(1e-6, 0.05), expand=c(0, 0)) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
   scale_color_manual("", values=c(cpalette[6], cpalette[2])) +
   scale_linetype_manual("", values=c(1, 2)) +
   ggtitle("A") +
   theme(
     panel.grid=element_blank(),
-    legend.position = c(0.9, 0.8),
+    legend.position = c(0.8, 0.8),
     legend.background = element_rect(fill=NA),
     axis.line = element_line(size=1),
     panel.border = element_blank()
   )
 
 g2 <- ggplot(out2) +
-  geom_line(aes(time, Iu*100, col="$I_u$", lty="$I_u$"), lwd=2) +
-  geom_line(aes(time, Iv*100, col="$I_v$", lty="$I_v$"), lwd=2) +
-  scale_y_log10("Infected (\\%)", limits=c(1e-6, 0.2)*100, expand=c(0, 0)) +
+  geom_line(aes(time, inc_s, col="Unvaccinated", lty="Unvaccinated"), lwd=2) +
+  geom_line(aes(time, inc_v, col="Vaccinated", lty="Vaccinated"), lwd=2) +
+  scale_y_log10("Incidence (1/day)", limits=c(1e-6, 0.05), expand=c(0, 0)) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
   scale_color_manual("", values=c(cpalette[6], cpalette[2])) +
   scale_linetype_manual("", values=c(1, 2)) +
@@ -48,9 +48,9 @@ g2 <- ggplot(out2) +
   )
 
 g3 <- ggplot(out3) +
-  geom_line(aes(time, Iu*100, col="$I_u$", lty="$I_u$"), lwd=2) +
-  geom_line(aes(time, Iv*100, col="$I_v$", lty="$I_v$"), lwd=2) +
-  scale_y_log10("Infected (\\%)", limits=c(1e-6, 0.2)*100, expand=c(0, 0)) +
+  geom_line(aes(time, inc_s, col="Unvaccinated", lty="Unvaccinated"), lwd=2) +
+  geom_line(aes(time, inc_v, col="Vaccinated", lty="Vaccinated"), lwd=2) +
+  scale_y_log10("Incidence (1/day)", limits=c(1e-6, 0.05), expand=c(0, 0)) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
   scale_color_manual("", values=c(cpalette[6], cpalette[2])) +
   scale_linetype_manual("", values=c(1, 2)) +
@@ -142,6 +142,6 @@ gtot2 <- egg::ggarrange(g2, g5, nrow=2, draw=FALSE)
 gtot2a <- annotate_figure(gtot2, top=text_grob("Polarized vaccination model", size=14))
 
 gtot3 <- egg::ggarrange(g3, g6, nrow=2, draw=FALSE)
-gtot3a <- annotate_figure(gtot3, top=text_grob("Immune boosting model", size=14))
+gtot3a <- annotate_figure(gtot3, top=text_grob("Immune-boosting model", size=14))
 
 grid.arrange(gtot1a, gtot2a, gtot3a, ncol=3)
