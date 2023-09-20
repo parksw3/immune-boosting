@@ -1,0 +1,36 @@
+
+\documentclass[tikz,border=2mm]{standalone}
+
+\usepackage{bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows,positioning}
+\usetikzlibrary{arrows.meta}
+
+\newcommand{\VE}{\ensuremath{\textrm{VE}}}
+
+\definecolor{colorS}{HTML}{56B4E9}
+\definecolor{colorRu}{HTML}{009E73}
+\definecolor{colorV}{HTML}{F0E442}
+\definecolor{colorRv}{HTML}{D55E00}
+\definecolor{colorIu}{HTML}{0072B2}
+\definecolor{colorIv}{HTML}{E69F00}
+
+\begin{document}
+
+\begin{tikzpicture}[node distance=2.5cm,auto,>=latex',every node/.append style={align=center},int/.style={draw, minimum size=1cm, circle},inverter/.style={rectangle,draw,inner sep=2pt,minimum size=6mm},]
+    \node [int, fill=colorS, fill opacity=1] (S2)             {$S_u$};
+    \node [int, right=of S2, fill=colorIu] (Is2)             {$I_u$};
+    \node [int, right=of Is2, fill=colorRu, fill opacity=1, text opacity=1] (Rs2)             {$R_u$};
+    \path[->] (S2) edge node [above] {$\lambda(t)$} (Is2);
+    \path[->] (Is2) edge node [above] {$\gamma_u$} (Rs2);
+    \node [int, below=of S2, fill=colorV, fill opacity=1, text opacity=1] (V2)             {$S_v$};
+    \node [int, right=of V2, fill=colorIv] (Iv2)             {$I_v$};
+    \node [int, right=of Iv2, fill=colorRv, fill opacity=1, text opacity=1] (Rv2)             {$R_v$};
+    \path[->] (S2) edge node [right] {$(1-\VE_P) \rho$} (V2);
+    \path[->] (S2) edge node [sloped, above] {$\VE_P \rho$} (Rv2);
+    \path[->] (V2) edge node [above] {$(1-\VE_L) \lambda(t)$} (Iv2);
+    \path[->] (Iv2) edge node [above] {$\gamma_v$} (Rv2);
+    \path[->] (V2) edge [out=-60, in=-120] node [below] {$q \VE_L \lambda(t)$} (Rv2);
+\end{tikzpicture}
+\end{document}
+
