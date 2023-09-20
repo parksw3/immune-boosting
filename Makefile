@@ -36,6 +36,15 @@ figure_simulation_generalized.Rout.%.tikz: figure_simulation_generalized.Rout ;
 
 ######################################################################
 
+figure_diagram_comb.pdf: figure_diagram_comb.tex
+
+leaky.pdf: leaky.tex
+polarized.pdf: polarized.tex
+boosting.pdf: boosting.tex
+full.pdf: full.tex
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
