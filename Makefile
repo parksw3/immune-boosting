@@ -52,11 +52,12 @@ figure_diagram_comb.pdf: figure_diagram_comb.tex
 
 ## Dushoff talk figures
 
-# figure_simulation_generalized.Rout.vaccinated.tikz.pdf: figure_simulation_generalized.Rout
+# figure_simulation_generalized.Rout.vaccinated.tikz.pdf: figure_simulation_generalized.R
 
 fs_sims.Rout: fs_sims.R simulate.rda
 
-fs_pix.Rout: fs_pix.R simulate.rda color_palette.rda
+fs_pix.Rout: fs_pix.R fs_sims.rds simulate.rda color_palette.rda
+## fs_pix.Rout.tikz.pdf: fs_pix.R
 
 ## figure_diagram_comb.pdf: figure_diagram_comb.tex
 Sources += leaky.tex polarized.tex boosting.tex full.tex
