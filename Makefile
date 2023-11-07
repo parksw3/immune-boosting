@@ -38,6 +38,8 @@ figure_simulation_efficacy.Rout: figure_simulation_efficacy.R simulate.rda color
 ## efficacy_panels.Rout.tikz.pdf: efficacy_panels.R 
 efficacy_panels.Rout: efficacy_panels.R simulate.rda color_palette.rda
 
+######################################################################
+
 figure_simulation_generalized.Rout: figure_simulation_generalized.R simulate.rda color_palette.rda
 
 figure_simulation_generalized.Rout.%.tikz: figure_simulation_generalized.Rout ;
@@ -46,11 +48,23 @@ figure_simulation_generalized.Rout.%.tikz: figure_simulation_generalized.Rout ;
 
 figure_diagram_comb.pdf: figure_diagram_comb.tex
 
+######################################################################
+
+## Dushoff talk figures
+
+# figure_simulation_generalized.Rout.vaccinated.tikz.pdf: figure_simulation_generalized.Rout
+
+fs_sims.Rout: fs_sims.R simulate.rda
+
+fs_pix.Rout: fs_pix.R simulate.rda color_palette.rda
+
+## figure_diagram_comb.pdf: figure_diagram_comb.tex
 Sources += leaky.tex polarized.tex boosting.tex full.tex
 ## leaky.pdf: leaky.tex
 ## polarized.pdf: polarized.tex
 ## boosting.pdf: boosting.tex
 ## full.pdf: full.tex
+
 
 ######################################################################
 
