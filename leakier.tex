@@ -1,0 +1,35 @@
+\documentclass[tikz,border=2mm]{standalone}
+
+\usepackage{bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows,positioning}
+\usetikzlibrary{arrows.meta}
+
+\newcommand{\VE}{\ensuremath{\textrm{VE}}}
+
+\definecolor{colorS}{HTML}{56B4E9}
+\definecolor{colorRu}{HTML}{009E73}
+\definecolor{colorV}{HTML}{F0E442}
+\definecolor{colorRv}{HTML}{D55E00}
+\definecolor{colorIu}{HTML}{0072B2}
+\definecolor{colorIv}{HTML}{E69F00}
+
+\begin{document}
+
+\begin{tikzpicture}[node distance=2.5cm,auto,>=latex',every node/.append style={align=center},int/.style={draw, minimum size=1cm, circle},inverter/.style={rectangle,draw,inner sep=2pt,minimum size=6mm},]
+    \node [int, fill=colorS, fill opacity=1, text opacity=1] (S)             {$S_u$};
+    \node [int, fill=colorS, fill opacity=1] (S3)             {$S_u$};
+    \node [int, right=of S3, fill=colorIu] (Is3)             {$I_u$};
+    \node [int, right=of Is3, fill=colorRu, fill opacity=1, text opacity=1] (Rs3)             {$R_u$};
+    \path[->] (S3) edge node [above] {$\lambda(t)$} (Is3);
+    \path[->] (Is3) edge node [above] {$\gamma_u$} (Rs3);
+    \node [int, below=of S3, fill=colorV, fill opacity=1, text opacity=1] (V3)             {$S_v$};
+    \node [int, right=of V3, fill=colorIv] (Iv3)             {$I_v$};
+    \node [int, right=of Iv3, fill=colorRv, fill opacity=1, text opacity=1] (Rv3)             {$R_v$};
+    \path[->] (S3) edge node [left] {$\rho$} (V3);
+    \path[->] (V3) edge node [above] {$(1-\pi(t)) \lambda(t)$} (Iv3);
+    \path[->] (Iv3) edge node [above] {$\gamma_v$} (Rv3);
+    \path[->] (V3) edge [out=-60, in=-120] node [below] {$\pi(t) \lambda(t)$} (Rv3);
+\end{tikzpicture}
+\end{document}
+
