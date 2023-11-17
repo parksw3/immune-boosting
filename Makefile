@@ -65,7 +65,10 @@ Sources += leaky.tex polarized.tex boosting.tex full.tex
 ## polarized.pdf: polarized.tex
 ## boosting.pdf: boosting.tex
 ## full.pdf: full.tex
+## leakier.pdf: leakier.tex
 
+## Not done; need to figure out bend stuff
+## leakiest.pdf: leakiest.tex
 
 ######################################################################
 
