@@ -39,3 +39,9 @@ print(g1
 	%+% (resdata %>% filter(R0==8 & scenario=="Polarized"))
 	+ ggtitle("Polarized")
 )
+
+print(g1
+	%+% (resdata %>% filter(R0==8 & scenario=="Leaky" & q != 0.5))
+	+ ggtitle("Epidemic size")
+	+ theme(legend.position = "none")
+)

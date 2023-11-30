@@ -66,6 +66,7 @@ Sources += leakier.tex leakiest.tex
 ## leaky.pdf: leaky.tex
 ## polarized.pdf: polarized.tex
 ## boosting.pdf: boosting.tex
+## partial.pdf: partial.tex
 ## full.pdf: full.tex
 ## leakier.pdf: leakier.tex
 
