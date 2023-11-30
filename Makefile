@@ -61,7 +61,7 @@ fs_pix.Rout: fs_pix.R fs_sims.rds simulate.rda color_palette.rda
 
 ## figure_diagram_comb.pdf: figure_diagram_comb.tex
 Sources += leaky.tex polarized.tex boosting.tex full.tex
-Sources += leakier.tex leakiest.tex partial.tex
+Sources += leakier.tex leakiest.tex
 
 ## leaky.pdf: leaky.tex
 ## polarized.pdf: polarized.tex
