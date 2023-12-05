@@ -125,14 +125,6 @@ To resolve the independence assumption, we introduce an immune boosting mechanis
 The boosting model further predicts identical epidemic dynamics as the polarized vaccination model, thereby bridging the differences between two models.
 We further develop a generalized vaccination model to explore how the assumptions of immunity affect epidemic dynamics and estimates of vaccine effectiveness.
 
-\section*{Significance statement}
-
-Different assumptions about the long- and medium-term effects of protective vaccination can predict sharply different epidemiological dynamics.
-However, there has been limited discussion about which assumptions are more realistic and therefore more appropriate for making public health decisions.
-Here, we show that the differences between the two most common assumptions (the “leaky” and “polarized” vaccination models) are bridged by immune boosting, a mechanism by which individuals who resist infectious challenge due to partial immunity have their immunity increased.
-We demonstrate that this mechanism has important implications for measuring vaccine effectiveness.
-Our study challenges fundamental assumptions about commonly used vaccination models and provides a novel framework for understanding the epidemiological impact of vaccination.
-
 \pagebreak
 
 \section*{Introduction}
@@ -141,7 +133,14 @@ Vaccination plays a critical role in controlling infectious disease outbreaks by
 In particular, if a critical vaccination threshold is reached, the reproduction number (defined as the average number of secondary infections caused by an infected individual) is reduced to below 1, and future epidemics can be prevented \citep{anderson1985vaccination}.
 But reaching a critical vaccination threshold can be challenging, and vaccines often provide imperfect protections \citep{gandon2003imperfect,anderson2020challenges}.
 
-There are two main ways of modeling vaccines with imperfect protections: ``leaky'' and ``all-or-nothing'' vaccine \citep{smith1984assessment}.
+Partial protections provided by vaccination have raised important questions about how vaccine efficacy should be measured from clinical trials (and likewise, vaccine effectiveness from real outbreaks).
+Historically, both vaccine efficacy and effectiveness have been estimtaed by comparing the cumulative proportion of vaccinated individuals who are infected against the cumulative proportion of unvaccinated individuals who are infected within a given time frame \citep{farrington1993estimation}.
+However, this approach implicitly assumes a single exposure/challenge and otherwise gives biased estimates, requiring different estimators for specifically tuned to each scenario \citep{halloran1991direct}.
+On the other hand, other researchers have suggested using measures based on incidence rates (i.e., the rate at which new infections or cases are generated) to estimating vaccine efficacy, but these methods are also subject to several biases \citep{rinta2009estimation,lipsitch2021interpreting}.
+Heterogeneity in mixing patterns, susceptible depletion, and immune waning further hampers our ability to estimate both vaccine efficacy and effectiveness \citep{halloran1992interpretation,lipsitch2019challenges,kahn2022identifying}.
+
+Even if vaccine efficacy can be accurately estimated, there are additional challenges to translating these estimates to population-level predictions about epidemic dynamics.
+In particular, there are two disparate ways of modeling vaccines with imperfect protections: ``leaky'' and ``all-or-nothing'' vaccine \citep{smith1984assessment}.
 The leaky vaccination model assumes that vaccinated individuals experience a reduced force of infection (e.g., multiplied by a factor $1-\VEL < 1$).
 The ``all-or-nothing'' vaccination model assumes that the proportion \VEP\ of vaccinated individuals are completely protected and the remaining proportion $1-\VEP$ of vaccinated individuals are completely susceptible.
 This model is analogous to the polarized immunity model, in which infection from one strain gives complete or no protection against other strains \citep{gog2002dynamics}---we thus refer to this model as the polarized vaccination model \citep{gomes2014missing}.
@@ -150,7 +149,6 @@ Here, both \VEL\ and \VEP\ represent vaccine efficacy, which we define as the pr
 When these two models are used with the same nominal vaccine efficacy $\VEL = \VEP$, they predict different epidemic dynamics, including the final size \citep{smith1984assessment}:
 for high force of infection, almost all individuals eventually get infected in the leaky model, whereas many individuals are permanently protected in the polarized model.
 Modelers tend to rely on the leaky assumption, including throughout the SARS-CoV-2 pandemic \citep{dyson2021possible,gozzi2021importance,marziano2021vaccine,matrajt2021vaccine,park2022intermediate} with some exceptions \citep{bubar2021model,buckner2021dynamic}.
-% \jd{Warnings from park2022intermediate.}
 Various reasons have been given, but most likely is a combination of convenience and tradition.
 
 Both models represent simplifications of reality.
@@ -161,7 +159,7 @@ In this study, we compare different approaches to dynamical modeling of vaccinat
 First, we construct a model with leaky vaccination and boosting, and show that the transmission dynamics of this model can bridge from the dynamics of the standard leaky model (with no boosting) to those of the polarized model (with perfect boosting). 
 %% In doing so, we show that the polarized vaccination and immune boosting models predict identical epidemic dynamics but different serological dynamics.
 Then, we construct a generalized vaccination model, which includes all three mechanisms, and explore its dynamics.
-Finally, we use our framework to compare measures of vaccine efficacy.
+Finally, we use our framework to compare measures of vaccine effectiveness.
 
 \section*{Mathematical models of vaccine-induced immunity}
 
@@ -374,7 +372,6 @@ But estimating vaccine effectiveness from real outbreaks is expected to be more 
 \includegraphics[width=\textwidth]{figure_simulation_efficacy.Rout.tikz.pdf}
 \caption{
 \textbf{Estimates of vaccine effectiveness using reduction in cumulative incidence (A) and hazard (B) over time.}
-\jd{Fig still says “harzard”}
 Vaccine effectiveness was calculated by simulating the generalized vaccination model for 220 days. 
 Colored lines represent the estimated vaccine effectiveness.
 Dashed lines represent the assumed vaccine efficacy.

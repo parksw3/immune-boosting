@@ -78,7 +78,7 @@ g1 <- ggplot(resdata) +
   geom_line(aes(time, cumulative*100, col=q), lwd=2) +
   geom_hline(yintercept=60, lty=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
-  scale_y_continuous("Estimated vaccine effecticacy (\\%)", limits=c(0, 100), expand=c(0, 0)) +
+  scale_y_continuous("Estimated vaccine effectiveness (\\%)", limits=c(0, 100), expand=c(0, 0)) +
   scale_color_viridis_d("Proportion of unsuccessful challenges boosted, $q$") +
   facet_grid(~scenario) +
   ggtitle("A. Cumulative-incidence reduction") +
@@ -91,7 +91,7 @@ g2 <- ggplot(resdata) +
   geom_line(aes(time, hazard*100, col=q), lwd=2) +
   geom_hline(yintercept=60, lty=2) +
   scale_x_continuous("Time (days)", expand=c(0, 0)) +
-  scale_y_continuous("Estimated vaccine effecticacy (\\%)", limits=c(0, 100), expand=c(0, 0)) +
+  scale_y_continuous("Estimated vaccine effectiveness (\\%)", limits=c(0, 100), expand=c(0, 0)) +
   facet_grid(~scenario) +
   ggtitle("B. Hazard reduction") +
   scale_color_viridis_d("Proportion of challenges boosted, $q$") +
