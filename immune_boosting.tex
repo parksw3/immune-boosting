@@ -183,7 +183,7 @@ Subscripts $u$ and $v$ represents unvaccinated and vaccinated.
 
 Throughout the paper, we assume that a population mixes homogeneously and that there is no loss of immunity;
 the latter assumption essentially corresponds to focusing on a single outbreak.
-We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced force of infection by a factor of $1-\VEL$:
+We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced probability of infection by a factor of $1-\VEL$:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
 \frac{\dd I_u}{\dd t} &= \lambda(t) S_u - \gamma_u I_u \\
@@ -228,14 +228,15 @@ Instead, the immune-boosting model assumes that unsuccessful challenges elicit i
 \end{align}
 In this model, both unvaccinated and vaccinated individuals are subject to identical forces of infection, which represent the per capita rate of challenges, but the outcome of challenges differ.
 
-
-
 The epidemiological dynamics (i.e., trajectories of $I_u$ and $I_v$) predicted by the immune-boosting model (based on leaky vaccination) and the polarized vaccination model are identical: 
 both models assume that individuals become vaccinated at rate $\rho$ and move out of the $S_v$ compartment at rate $\lambda$ and only differ in when individuals get sorted based on the result of their next challenge.
 This equivalence allows us to bridge the difference between the leaky and polarized vaccination models.
 The equivalence holds regardless of infection characteristics of vaccinated individuals (i.e., the duration of their infection and their transmissibility).
-In Supplementary Materials, we further show that epidemic dynamics are independent of the shape of the susceptibility distribution under immune boosting (and instead only depends on the mean susceptibility);
-under a leaky vaccination model, however, epidemic dynamics are sensitive to the susceptibility distribution \citep{gomes2014missing}.
+
+Other studies have tried to characterize the differences between leaky and polarized vaccination models by considering a distribution of susceptibility (i.e., $1-\mathrm{vaccine efficacy}$) among vaccinated individuals, where the susceptibility can vary anywhere between 0 and 1 with some probability distribution \citep{gomes2014missing}.
+For example, the leaky assumption was previously modeled using a delta distribution (i.e., all individuals are equally susceptible), whereas the polarized assumption was previously modeled using a polarized distribution (i.e., some individuals have complete protection and others have no protection). 
+While it is possible to bridge these two distributions using a continuous distributions, this approach also implicitly assumes that unsuccessful challenges remain just as susceptible.
+Instead, in Supplementary Materials, we show that epidemic dynamics are independent of the shape of the susceptibility distribution under immune boosting (and instead only depends on the mean susceptibility).
 
 Finally, we consider a generalized model that encompasses all three mechanisms above (dichotomous vaccine responses, partial protection, and immune boosting):
 \begin{align}
@@ -274,7 +275,7 @@ Here, we do not distinguish the sources of antibodies (whether derived from natu
 in such case, we assume individuals in the $S_v$ compartment are seronegative because they have not retained any immunity from the vaccination.
 The leaky vaccination model predicts the largest outbreak and therefore the highest levels of seroprevalence (89.7\% by the end of the simulation).
 The immune-boosting model predicts lower seroprevalence (85.6\%), reflecting the lower final size, while 
-the polarized vaccination model predicts a still lower seroprevalence (79.9\%) because of our assumption that people not protected by polarized vaccination do not are not seropositive.
+the polarized vaccination model predicts a still lower seroprevalence (79.9\%) because of our assumption that people not protected by polarized vaccination are not seropositive.
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{figure_simulation_compare.Rout.tikz.pdf}
@@ -353,8 +354,6 @@ We compare two estimates of vaccine effectiveness across a wide range of assumpt
 We assume 60\% efficacy throughout (therefore $\VE = 0.6$).
 Under polarized vaccination ($\VEP=\VE$, $\VEL=0$), the cumulative-incidence reduction always gives correct answers throughout the epidemic---since the susceptible pool among unvaccinated and vaccinated individuals is depleted at the same rate $\lambda$, the ratios of their proportions of cumulative infections remain constant.
 Likewise, the cumulative-incidence reduction also gives correct answers under immune boosting ($q=1$).
-
-Likewise, the cumulative-incidence reduction also give correct answers for the polarized vaccination model ($\VEL = 0$, $\VEP = \VE$).
 However, when some challenges are not boosted ($q < 1$), using cumulative incidence underestimates the vaccine efficacy beyond the exponential growth phase.
 This is because vaccinated individuals who have been exposed but are not boosted or infected still remain susceptible to future infections; 
 larger final epidemic sizes predicted by these models (\fref{sensitivity}) then translate to a seemingly lower vaccine efficacy.
@@ -426,8 +425,7 @@ By making this link, we both illustrate the spectrum of trajectories expected fo
 \section*{Supplementary Text}
 
 Here, we show that, in the presence of immune boosting, epidemic dynamics are independent of the shape of the susceptibility distribution (depending only on mean susceptibility).
-To do so, consider an immune-boosting model that allows for heterogeneity in vaccine-derived immunity.
-We assume that a vaccinated individual's susceptibility $0 \leq p \leq 1$ follows some distribution $f(p)$:
+To do so, we assume that a vaccinated individual's susceptibility $0 \leq p \leq 1$ (i.e., probability of infection given challenge) follows some distribution $f(p)$:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
 \frac{\dd I_u}{\dd t} &= \lambda(t) S_u - \gamma_u I_u \\
