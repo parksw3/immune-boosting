@@ -14,7 +14,7 @@ viridis::viridis(4, begin=0.1, alpha=0.4)
 S0 <- 0.5
 I0 <- 1e-6
 R0vec <- c(2.5, 4, 8)
-VEvec <- seq(0.05, 0.95, length.out=31)
+VEvec <- seq(0, 1, length.out=31)
 qvec <- c(0, 1/3, 2/3, 1)
 scenariovec <- c(1, 2, 3) ## VE_L=VE, VE_L=sqrt(VE), VE_P=VE
 
