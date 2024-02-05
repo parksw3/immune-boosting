@@ -116,7 +116,7 @@ Sang Woo Park\textsuperscript{1,*}, Michael Li\textsuperscript{2,3}, C. Jessica 
 \section*{Abstract}
 
 Two different epidemiological models of vaccination are commonly used in dynamical modeling studies.
-The leaky vaccination model assumes that all vaccinated individuals experience a reduced force of infection.
+The leaky vaccination model assumes that all vaccinated individuals experience a reduced probability of infection.
 The polarized vaccination model assumes that some fraction of vaccinated individuals are completely protected, while the remaining fraction remains completely susceptible;
 this seemingly extreme assumption causes the polarized model to always predict lower final epidemic size than the leaky model under the same vaccine efficacy.
 However, the leaky model also makes an implicit, unrealistic assumption: 
@@ -183,7 +183,6 @@ Subscripts $u$ and $v$ represents unvaccinated and vaccinated.
 
 Throughout the paper, we assume that a population mixes homogeneously and that there is no loss of immunity (including indirectly through deaths and births); 
 the latter assumption essentially corresponds to focusing on a single outbreak.
-\jd{I seem to have gone through a loop here, sorry about that, happy with current text.}
 We begin with a standard SIR model with a leaky vaccine, in which all vaccinated individuals experience a reduced probability of infection by a factor of $1-\VEL$:
 \begin{align}
 \frac{\dd S_u}{\dd t} &= - \lambda(t) S_u - \rho S_u \\
@@ -234,7 +233,7 @@ both models assume that individuals become vaccinated at rate $\rho$ and move ou
 This equivalence allows us to bridge the difference between the leaky and polarized vaccination models.
 The equivalence holds regardless of infection characteristics of vaccinated individuals (i.e., the duration of their infection and their transmissibility).
 
-Other studies have tried to characterize the differences between leaky and polarized vaccination models by considering a distribution of susceptibility (i.e., $1-\mathrm{vaccine~efficacy}$ \jd{$1-\mathrm{efficacy}$ might be better}) among vaccinated individuals, where the susceptibility can vary anywhere between 0 and 1 with some probability distribution \citep{gomes2014missing}.
+Other studies have tried to characterize the differences between leaky and polarized vaccination models by considering a distribution of susceptibility (i.e., $1-\mathrm{efficacy}$) among vaccinated individuals, where the susceptibility can vary anywhere between 0 and 1 with some probability distribution \citep{gomes2014missing}.
 For example, the leaky assumption was previously modeled using a delta distribution (i.e., all individuals are equally susceptible), whereas the polarized assumption was previously modeled using a polarized distribution (i.e., some individuals have complete protection and others have no protection). 
 While it is possible to bridge these two distributions using a continuous distributions, this approach also implicitly assumes that unsuccessful challenges remain just as susceptible.
 Instead, in Supplementary Materials, we show that under complete boosting, epidemic dynamics depend only on the mean (not the shape) of the susceptibility distribution.
