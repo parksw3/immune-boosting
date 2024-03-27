@@ -23,6 +23,12 @@ temp_files: figure_diagram_comb.pdf.op figure_simulation_compare.Rout.tikz.pdf.o
 
 ######################################################################
 
+## JRSI reviews
+
+Sources += drop.md
+
+######################################################################
+
 Sources += $(wildcard *.R)
 
 autopipeR = defined
@@ -87,7 +93,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/01.stamp
+Makefile: makestuff/02.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone $(msrepo)/makestuff
@@ -97,6 +103,7 @@ makestuff/%.stamp:
 
 -include makestuff/pipeR.mk
 -include makestuff/texi.mk
+-include makestuff/ldrop.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
