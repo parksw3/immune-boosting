@@ -121,7 +121,7 @@ The polarized vaccination model assumes that some fraction of vaccinated individ
 this seemingly extreme assumption causes the polarized model to always predict lower final epidemic size than the leaky model under the same vaccine efficacy.
 However, the leaky model also makes an implicit, unrealistic assumption: 
 vaccinated individuals who are exposed to infection but not infected remain just as susceptible as they were prior to exposure.
-To adddress this latter assumption, we introduce an immune boosting mechanism, through which partially susceptible individuals can gain protection without developing a transmissible infection.
+To address this latter assumption, we introduce an immune boosting mechanism, through which partially susceptible individuals can gain protection without developing a transmissible infection.
 A model where such boosted individuals are perfectly protected predicts identical epidemic dynamics as the polarized vaccination model, thereby bridging the differences between two models.
 We further develop a generalized vaccination model to explore how the assumptions of immunity affect epidemic dynamics and estimates of vaccine effectiveness.
 
@@ -133,27 +133,45 @@ Vaccination plays a critical role in controlling infectious disease outbreaks by
 In particular, if a critical vaccination threshold is reached, the reproduction number (defined as the average number of secondary infections caused by an infected individual) is reduced to below 1, and epidemics can be prevented \citep{anderson1985vaccination}.
 But reaching a critical vaccination threshold can be challenging, and vaccines often provide partial protection \citep{gandon2003imperfect,anderson2020challenges}.
 
-Partial protection provided by vaccination raises important questions about how vaccine efficacy (in clinical trials) and vaccine effectiveness (in populations) should be estimated.
-Traditionally, both efficacy and effectiveness have been estimated by comparing the (cumulative) proportion of vaccinated individuals infected in a given time frame to the same proportion among unvaccinated individuals \citep{farrington1993estimation}.
-However, this approach implicitly assumes a single exposure per individual, and otherwise gives biased estimates, requiring different estimators specifically tuned to a particular scenario \citep{halloran1991direct}.
-Other researchers have suggested using measures based on incidence rates (i.e., the rate at which new infections or cases are generated) to estimating vaccine efficacy; these methods are also subject to several biases \citep{rinta2009estimation,lipsitch2021interpreting}.
-Heterogeneity in mixing patterns, susceptible depletion, and immune waning further hamper our ability to estimate vaccine efficacy and effectiveness \citep{halloran1992interpretation,lipsitch2019challenges,kahn2022identifying}.
+% Partial protection provided by vaccination raises important questions about how vaccine efficacy (in clinical trials) and vaccine effectiveness (in populations) should be estimated.
+% Traditionally, both efficacy and effectiveness have been estimated by comparing the (cumulative) proportion of vaccinated individuals infected in a given time frame to the same proportion among unvaccinated individuals \citep{farrington1993estimation}.
+% However, this approach implicitly assumes a single exposure per individual, and otherwise gives biased estimates, requiring different estimators specifically tuned to a particular scenario \citep{halloran1991direct}.
+% Other researchers have suggested using measures based on incidence rates (i.e., the rate at which new infections or cases are generated) to estimating vaccine efficacy; these methods are also subject to several biases \citep{rinta2009estimation,lipsitch2021interpreting}.
+% Heterogeneity in mixing patterns, susceptible depletion, and immune waning further hamper our ability to estimate vaccine efficacy and effectiveness \citep{halloran1992interpretation,lipsitch2019challenges,kahn2022identifying}.
 
-Even if vaccine efficacy can be accurately estimated, there are additional challenges to translating these estimates to population-level predictions about epidemic dynamics.
-In particular, there are two disparate ways of modeling vaccines with partial protections: ``leaky'' and ``all-or-nothing'' vaccine \citep{smith1984assessment}, which yield different dynamics even when vaccine efficacy (defined here as proportion of people protected from their first challenge) is held constant.
-The leaky vaccination model assumes that vaccinated individuals experience a reduced force of infection (e.g., multiplied by a factor $1-\VEL < 1$, where \VEL\ represents (leaky) vaccine efficacy.
-The ``all-or-nothing'' vaccination model assumes that the proportion \VEP\ of vaccinated individuals are completely protected and the remaining proportion $1-\VEP$ of vaccinated individuals are completely susceptible, where \VEP\ represents (polarized) vaccine efficacy, 
-so-called because this model is analogous to the “polarized” model of cross-immunity, in which infection from one strain gives complete or no protection against other strains \citep{gog2002dynamics,gomes2014missing}.
+Recent efforts to develop vaccines against COVID-19 have raised important questions about how vaccine efficacy and effectiveness should be estimated \citep{kennedy2021estimating,lipsitch2021interpreting,kahn2022identifying,follmann2023vaccine,kahn2024examining} and interpreted \citep{lipsitch2020understanding,imai2021interpreting}.
+In parallel, there has been considerable discussion around whether COVID-19 vaccines should be modeled as ``leaky'' or ``all-or-nothing'' (polarized) \citep{han2021time,kahn2022identifying,liu2022optimizing,miura2023inferring,otto2024endemic}.
+On one hand, the leaky vaccination model assumes that vaccinated individuals experience a reduced probability of infection per exposure (e.g., multiplied by a factor $1-\VEL < 1$, where \VEL\ represents (leaky) vaccine efficacy \citep{smith1984assessment}).
+On the other hand, the ``all-or-nothing'' (polarized) vaccination model assumes that the proportion \VEP\ of vaccinated individuals are completely protected and the remaining proportion $1-\VEP$ of vaccinated individuals are completely susceptible, where \VEP\ represents (polarized) vaccine efficacy \citep{gog2002dynamics,gomes2014missing}.
+A few studies suggested that qualitative conclusions about vaccine rollouts can be insensitive to these assumptions \citep{bubar2021model,keeling2023impacts}.
+However, understanding the characteristics of partial protection (i.e., leaky vs polarized) is essential to accurately predicting future outbreaks and estimating vaccine efficacy and effectiveness because leaky vaccine always predicts a larger outbreak \citep{smith1984assessment}.
 
-There is some empirical support for both leaky \citep{lind2023evidence} and polarized vaccines \citep{langwig2017vaccine}, and the two assumptions can have sharply different consequences for outbreak predictions.
-Specifically, when these two models are used with the same nominal vaccine efficacy $\VEL = \VEP$, they predict different epidemic dynamics, including the final size \citep{smith1984assessment}:
-for a high force of infection, almost all individuals eventually get infected in the leaky model, whereas many individuals are permanently protected in the polarized model.
-Modelers tend to rely on the leaky assumption, including throughout the SARS-CoV-2 pandemic \citep{dyson2021possible,gozzi2021importance,marziano2021vaccine,matrajt2021vaccine,park2022intermediate} with some exceptions \citep{bubar2021model,buckner2021dynamic}.
-Various reasons have been given, but most likely is a combination of convenience and tradition.
+While both frameworks represent simplifications of reality, they provide a basis for characterizing and modeling vaccine failure.
+For example, another key dimension to understanding vaccine failure is waning of immunity \citep{heffernan2009implications}.
+Under leaky vaccine, waning immunity is captured as a reduction in individual-level vaccine efficacy, where the probability of infection per exposure increases over time.
+Under polarized vaccine, waning immunity is captured as a decrease in the proportion of fully protected individuals.
 
-Both models represent simplifications of reality.
-The leaky model in particular overlooks a potentially important mechanism: individuals in this model do not lose any susceptibility when (implicitly) exposed to a challenge that does not result in infection. 
-In fact, vaccinated individuals who successfully fight off exposures can experience immune boosting, thus becoming less susceptible to future infections without becoming infectious or developing symptoms from the exposure \citep{lavine2011natural,yang2020waning}.
+So far, many models for COVID-19 vaccines have relied on the leaky assumption (see \cite{liu2022optimizing} for a review).
+Although this assumption is supported by empirical evidence for exposure-dependent protection \citep{lind2023evidence}, current approaches to modeling laeky vaccination relies on an implicit assumption: 
+individuals in this model do not lose any susceptibility when (implicitly) exposed to a challenge that does not result in infection. 
+This implicit assumption in particular overlooks a potentially important mechanism:
+vaccinated individuals who successfully fight off exposures can experience immune boosting, thus becoming less susceptible to future infections without becoming infectious or developing symptoms from the exposure \citep{lavine2011natural,yang2020waning}.
+
+% Even if vaccine efficacy can be accurately estimated, there are additional challenges to translating these estimates to population-level predictions about epidemic dynamics.
+% In particular, there are two disparate ways of modeling vaccines with partial protections: ``leaky'' and ``all-or-nothing'' vaccine \citep{smith1984assessment}, which yield different dynamics even when vaccine efficacy (defined here as proportion of people protected from their first challenge) is held constant.
+% The leaky vaccination model assumes that vaccinated individuals experience a reduced force of infection (e.g., multiplied by a factor $1-\VEL < 1$, where \VEL\ represents (leaky) vaccine efficacy.
+% The ``all-or-nothing'' vaccination model assumes that the proportion \VEP\ of vaccinated individuals are completely protected and the remaining proportion $1-\VEP$ of vaccinated individuals are completely susceptible, where \VEP\ represents (polarized) vaccine efficacy, 
+% so-called because this model is analogous to the “polarized” model of cross-immunity, in which infection from one strain gives complete or no protection against other strains \citep{gog2002dynamics,gomes2014missing}.
+
+% There is some empirical support for both leaky \citep{lind2023evidence} and polarized vaccines \citep{langwig2017vaccine}, and the two assumptions can have sharply different consequences for outbreak predictions.
+% Specifically, when these two models are used with the same nominal vaccine efficacy $\VEL = \VEP$, they predict different epidemic dynamics, including the final size \citep{smith1984assessment}:
+% for a high force of infection, almost all individuals eventually get infected in the leaky model, whereas many individuals are permanently protected in the polarized model.
+% Modelers tend to rely on the leaky assumption, including throughout the SARS-CoV-2 pandemic \citep{dyson2021possible,gozzi2021importance,marziano2021vaccine,matrajt2021vaccine,park2022intermediate} with some exceptions \citep{bubar2021model,buckner2021dynamic}.
+% Various reasons have been given, but most likely is a combination of convenience and tradition.
+
+% Both models represent simplifications of reality.
+% The leaky model in particular overlooks a potentially important mechanism: individuals in this model do not lose any susceptibility when (implicitly) exposed to a challenge that does not result in infection. 
+% In fact, vaccinated individuals who successfully fight off exposures can experience immune boosting, thus becoming less susceptible to future infections without becoming infectious or developing symptoms from the exposure \citep{lavine2011natural,yang2020waning}.
 
 In this study, we compare different approaches to dynamical modeling of vaccination and immunity.
 First, we construct a model with leaky vaccination and boosting, and show that the transmission dynamics of this model can bridge from the dynamics of the standard leaky model (with no boosting) to those of the polarized model (with perfect boosting). 
@@ -197,7 +215,7 @@ $\lambda$ represents the baseline force of infection experienced by unvaccinated
 $\rho$ represents vaccination rate;
 $\gamma$ represents the recovery rate;
 and \VEL\ represents the vaccine efficacy, which also captures the amount of reduction in the probability of infection.
-This kind of model is sometimes called “history-based”, since susceptibility of an individual depends only on their history of infections (or vaccination) \citep{gog2002dynamics,gog2002status,kucharski2016capturing}.
+% This kind of model is sometimes called “history-based”, since susceptibility of an individual depends only on their history of infections (or vaccination) \citep{gog2002dynamics,gog2002status,kucharski2016capturing}.
 
 Conversely, the polarized vaccination model assumes that a proportion \VEP\ of vaccinated individuals become fully immune, whereas the remaining proportion $1-\VEP$ remain susceptible: 
 \begin{align}
@@ -208,7 +226,7 @@ Conversely, the polarized vaccination model assumes that a proportion \VEP\ of v
 \frac{\dd I_v}{\dd t} &= \lambda(t) S_v - \gamma_v I_v \\
 \frac{\dd R_v}{\dd t} &= \gamma_v I_v + \VEP \rho S_u
 \end{align}
-This is the approach used in “status-based” models of cross immunity---such models keep track of immune statuses of individuals, rather than their histories \citep{gog2002dynamics,gog2002status,kucharski2016capturing}.
+% This is the approach used in “status-based” models of cross immunity---such models keep track of immune statuses of individuals, rather than their histories \citep{gog2002dynamics,gog2002status,kucharski2016capturing}.
 For this model, the parameter \VEP\ is the measure of vaccine efficacy.
 
 These two widely used models have important dynamical differences. For a given set of shared parameters, and the same value of vaccine efficacy, initial dynamics will be the same, but the permanent protection of individuals in the polarized model will always result in a lower final outbreak size than the leaky vaccination model. When both \VE\ and the initial value of \Rx\ are relatively high, this difference is large.
@@ -253,8 +271,9 @@ When $q=1$ (i.e., in the presence of full boosting), setting $\VEP = 0$ gives us
 The relationship between these four models are summarized in \fref{diagram}.
 The generalized vaccination model has a combined vaccine efficacy of $\VE = 1- (1-\VEL) (1-\VEP)$.
 We later analyze the dynamics of the generalized vaccination model while keeping $\VE$ fixed.
+All models are solved using the \texttt{deSolve} package \citep{soetaert2010solving} in \texttt{R} \citep{Rlang}.
 
-\section*{Model simulations}
+\section*{Numerical analysis}
 
 We begin by comparing the dynamics of three individual models: leaky vaccination, polarized vaccination, and immune-boosting models.
 As an example, we consider a homogeneously mixing population. In this case, the force of infection is given by:
