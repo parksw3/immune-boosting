@@ -16,7 +16,7 @@ vim_session:
 Sources += immune_boosting.tex
 ## immune_boosting.pdf: immune_boosting.tex
 
-## immune_boosting.tex.daf1b7dc.oldfile:
+## immune_boosting.tex.1322d518.oldfile:
 ## immune_boosting.ld.pdf: immune_boosting.tex
 
 temp_files: figure_diagram_comb.pdf.op figure_simulation_compare.Rout.tikz.pdf.op figure_simulation_generalized.Rout.vaccinated.tikz.pdf.op figure_simulation_efficacy.Rout.tikz.pdf.op
@@ -102,7 +102,7 @@ makestuff/%.stamp:
 -include makestuff/os.mk
 
 -include makestuff/pipeR.mk
--include makestuff/texi.mk
+-include makestuff/texj.mk
 -include makestuff/ldrop.mk
 
 -include makestuff/git.mk
