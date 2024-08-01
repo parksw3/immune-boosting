@@ -1,0 +1,195 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{color}
+
+\usepackage{xspace}
+
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+
+\usepackage{natbib}
+\bibliographystyle{chicago}
+
+\newcommand{\eref}[1]{Eq.~(\ref{eq:#1})}
+\newcommand{\fref}[1]{Fig.~\ref{fig:#1}}
+
+\newcommand{\rR}{\mbox{$r$--$\cal R$}}
+\newcommand{\RR}{\ensuremath{{\cal R}}}
+\newcommand{\RRhat}{\ensuremath{{\hat \cal R}}}
+\newcommand{\Rx}[1]{\ensuremath{{\cal R}_{#1}}} 
+\newcommand{\Ro}{\ensuremath{{\mathcal R}_{0}}\xspace}
+\newcommand{\Rs}{\Rx{\mathrm{s}}}
+\newcommand{\Rpool}{\ensuremath{{\mathcal R}_{\textrm{\tiny{pool}}}}\xspace}
+\newcommand{\Reff}{\Rx{\mathit{eff}}}
+\newcommand{\Tc}{\ensuremath{C}}
+
+\newcommand{\dd}[1]{\ensuremath{\, \mathrm{d}#1}}
+\newcommand{\dtau}{\dd{\tau}}
+\newcommand{\dx}{\dd{x}}
+\newcommand{\dsigma}{\dd{\sigma}}
+
+\newcommand{\rev}{\subsection*}
+\newcommand{\revtext}{\textsf}
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0em}
+
+\newcommand{\comment}[3]{\textcolor{#1}{\textbf{[#2: }\textsl{#3}\textbf{]}}}
+\newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
+\newcommand{\swp}[1]{\comment{magenta}{SWP}{#1}}
+\newcommand{\dc}[1]{\comment{blue}{DC}{#1}}
+\newcommand{\jsw}[1]{\comment{green}{JSW}{#1}}
+\newcommand{\hotcomment}[1]{\comment{red}{HOT}{#1}}
+
+\newcommand{\psymp}{\ensuremath{p}} %% primary symptom time
+\newcommand{\ssymp}{\ensuremath{s}} %% secondary symptom time
+\newcommand{\pinf}{\ensuremath{\alpha_1}} %% primary infection time
+\newcommand{\sinf}{\ensuremath{\alpha_2}} %% secondary infection time
+
+\newcommand{\psize}{{\mathcal P}} %% primary cohort size
+\newcommand{\ssize}{{\mathcal S}} %% secondary cohort size
+
+\newcommand{\gtime}{\tau_{\rm g}} %% generation interval
+\newcommand{\gdist}{g} %% generation-interval distribution
+\newcommand{\idist}{\ell} %% incubation period distribution
+
+\newcommand{\total}{{\mathcal T}} %% total number of serial intervals
+
+
+\begin{document}
+
+\noindent Dear Editor:
+
+Thank you for the chance to revise and resubmit our manuscript. 
+We have made major revisions to our manuscript to address the reviewers' comments.
+Below please find our detailed responses to reviewers.
+
+\rev{Reviewer \#1}
+
+\revtext{Two types of epidemiological vaccination models are commonly used in dynamic modeling studies. It is assumed that all vaccinated individuals experience a reduced risk of infection in the leaky vaccination model. According to the polarized vaccination model, some vaccinated individuals will be completely protected, while others will remain completely vulnerable. Under the same vaccine efficacy, the polarized model always predicts a lower final epidemic size than the leaky model. However, the leaky model also makes an implicit, unrealistic assumption: vaccinated individuals who are exposed to infection but not infected remain just as susceptible as before. This latter assumption is addressed by introducing an immune-boosting mechanism, which protects partially susceptible individuals without causing them to contract infectious diseases. Similarly, a model in which such boosted individuals are perfectly protected predicts the same epidemic dynamics.}
+
+\revtext{The manuscript is interesting and includes some useful results. However, some comments should be considered before publication.}
+
+\revtext{Proofreading is required to improve the presentation and correct typos.}
+
+Thank you for yoru comments. We have proofread the paper to correct grammatical and spelling errors.
+
+\revtext{Reference the models and investigate whether the solutions are positive.}
+
+While we agree that studying positivity of solution is important in a theoretical analysis, we feel that these topics are not the main focus of our analysis.
+In addition, the models presented in this paper follow standard approaches, for which positivity of solutions is widely accepted. 
+We have tried to reference 
+
+Although it is common to study existence and uniqueness in theoretical analysis of equilibrium solutions to dynamical systems, particularly those composed of ordinary differential equations, this is not the topic of our analysis. The main model used in this study simulates stochastic transmission between a pair of individuals only and does not consider further transmission beyond the secondary case. This is unlike an ODE model which explores the effect of different parameters on equilibrium solutions, particularly thresholds for non- zero final epidemic sizes (i.e. R0>1). Because we are interested in the statistical power to correctly estimate generation and serial intervals, we instead explore the interaction between pathogen biology, contact pattern and early isolation policies, and how they collectively affect the generation and serial intervals in independent transmission pairs.
+
+\revtext{I recommend investigating the sensitivity analysis due to small perturbations in vaccine parameters and other useful parameters. There is a need for more discussion of the numerical simulations.}
+
+Figure 2 presents sensitivity analysis with respect to assumptions about vaccine parameters.
+
+\revtext{Explain how you solved the models and clarify your main contributions and conclusions.}
+
+We have added the following sentence:
+
+``All models are solved using the \texttt{deSolve} package \citep{soetaert2010solving} in \texttt{R} \citep{Rlang}.''
+
+We have also tried to clairfy the main contributions and conclusions as suggested by other reviewers as well.
+
+\revtext{The following article may be useful to improve the literature review. Delay Differential Equations and Applications to Biology, Springer,  2021; Dynamics of Hepatitis C Virus Infection: Mathematical Modeling and Parameter Estimation, Mathematical Modelling of Natural Phenomena, 12 (5) (2017) 33–47; SIR Model of Swine Influenza Epidemic in Abu Dhabi: Estimation of Vaccination Requirement, Journal of Public Health Frontier (PHF), Vol 1 (4) (2012) 85-89.}
+
+
+
+\rev{Reviewer \#2}
+
+\revtext{The paper proposes ordinary differential equation systems to model epidemics where vaccinations are performed. Two types of vaccination models are considered: leaky, where all vaccinated individuals have some level of immunity (not complete), and polarized, where some individuals have total immunity and the remaining vaccinated do not have any. The paper proposes an additional immune-busting model and a generalized one, which includes all three models. The leaky and the polarized models give different sizes of the epidemic. However, including the immune-boosting mechanism in the leaky vaccination model brings the two models to predict the same epidemic size.
+The paper is interesting, well-written and organized. However, the original contribution is limited to the modeling approaches and their discussion.}
+
+Thank you for your review.
+
+\revtext{As a consequence, the applicability and usefulness of the results are not clear. It's more of a modeling exercise under straightforward assumptions: homogeneous contacts in populations, no age groups, and, more importantly, no real data application (COVID has a lot of data available).}
+
+\revtext{Minor comments:}
+
+\revtext{The text in the figures is too small}
+
+\revtext{What is R in line 134, page 8?}
+
+\revtext{The title "model simulation" does not seem appropriate. That section reports numerical solutions for ODE systems, not simulations.}
+
+We have changed the title to ``Numerical analysis''
+
+\rev{Reviewer \#3}
+
+\revtext{In this manuscript, the authors point out that a vaccinated host can experience stimulation of its immune response upon exposure to pathogen and that this stimulation can “boost” its degree of protection from subsequent infection. They use simplified transmission models to examine some potential consequences of this fact, both in terms of the expected time-course of an epidemic and the predicted serological cross-sections. Mathematically, their models are posed as low-dimensional, deterministic dynamical systems. They also look into the estimation of vaccine efficacy and effectiveness under these models. Their principal result is that, under certain circumstances, there is resemblance between models with primary vaccine failure and models with immune boosting. They also remark on the fact that common approaches to estimating vaccine effectiveness give different perspectives depending on whether and to what extent boosting is present. The issues examined by the manuscript are important, timely, and as yet imperfectly understood, hence worthy of attention. Moreover, JRSI seems an appropriate venue for this work.}
+
+Thank you for your review.
+
+\revtext{On the other hand, the authors focus their attention rather narrowly, with the consequence that one is left with important unresolved questions as to the generality of their results. In particular, because they assume that neither vaccine- nor infection-derived protection wanes with time and that vaccine priming is instantaneous and permanent, and because their central result evidently depends on these assumptions, the reader is left wondering whether their conclusions apply to familiar infections. Moreover, though their discussion of vaccine effectiveness is informative, it touches on some of the key questions only obliquely. It could be rewritten so that the implications of the study for important questions of interest are more directly stated.}
+
+\revtext{In the abstract and introduction, the manuscript is framed as a sort of adjudication between two models: (1) The “polarized vaccination” model, in which a vaccination either “takes” or it does not, so that a vaccinated host is either perfectly protected or protected not at all. Failure to take is sometimes called “primary vaccine failure”. (2) The “leaky vaccination” model, in which a vaccinated host is protected imperfectly, so that the probability that such a host becomes infected upon exposure is reduced relative to an unvaccinated host. I do not find this framing compelling, or even helpful, for two reasons.} 
+
+Thank you for pointing this out.
+We realized that our framing was not clear enough beforehand.
+After reviewing relevant literature, we still feel that the distinction between leaky vs polarized vaccination model is pertinent to how modelers think about vaccination, given considerable discussion on modeling choices for vaccination within the modeling community.
+A part of reason we wrote this paper is also because many of our own modeling groups and collaborators had similar questions about appropriateness of the two frameworks and their implications.
+We now provide a more thorough discussion on relevant literature.
+
+We also feel that a part of confusion comes from a lack of clear terminology.
+So far, leaky vaccine have been associated with exposure-dependent protection from both modeling and empirical literature, but the leaky vaccine \emph{model} relies on an additional assumption that failed challenges do not affect susceptibility.
+We have tried to distinction clearer throughout.
+
+\revtext{First, the two models do not capture the full range of ways in which a vaccine can be imperfect. In particular, vaccines can fail not only to take, or in degree (i.e., through leakiness), but also in duration: their protective effect can wane with time. More generally, vaccines are typically imperfect in all three ways. Thus the framing that ignores the third form of vaccine failure seems artificial.}
+
+We have now added the following paragraph in the introduction that ties vaccine waning with the two models:
+
+``While both frameworks represent simplifications of reality, they provide a basis for characterizing and modeling vaccine failure.
+For example, another key dimension to understanding vaccine failure is waning of immunity \citep{heffernan2009implications}.
+Under leaky vaccine, waning immunity is captured as a reduction in individual-level vaccine efficacy, where the probability of infection per exposure increases over time.
+Under polarized vaccine, waning immunity is captured as a decrease in the proportion of fully protected individuals.''
+
+\revtext{Second, as the paper itself acknowledges, the polarized and leaky vaccination models represent only the extreme positions of a continuum so that the framing in terms of one versus the other seems contrived. Now, with respect to the second point, I recognize that this in essence a matter of style and perhaps there is room in scientific writing for a bit of dramatic tension. However, my first point is that we are not really dealing with a simple two-ended continuum: there are at least three ways in which a vaccine can fail. Thus, the exclusive focus on two of these three risks seems a bit facile. Again, this is an issue with the framing rather than the substance, but it is a distraction.}
+
+We have rewritten most of the introduction to improve framing.
+
+\revtext{Much more importantly, because the conclusions rest on certain simplifying assumptions, it is important to address the generality of the results. In particular, the authors justify their disallowance of waning by restricting their attention to a single epidemic outbreak. Indeed, if infection- or vaccine-derived immunity is long-lived relative to the outbreak’s duration, the assumption that there is no waning may be a useful approximation. However, for several important infections, these time-scales may not separate so neatly. It is therefore interesting to know to what extent the main conclusions change in the presence of some degree of waning.}
+
+\revtext{In a similar vein, it appears that the manuscript’s results may depend sensitively on the assumptions that, in the boosting and generalized models, the priming induced by vaccination is both instantaneous and permanent. One naturally wonders whether, if priming requires multiple doses of vaccine, or if it itself wanes relatively quickly, what the effect of boosting will be, and how it will differ from the idealized case.}
+
+\revtext{A related assumption that the authors make is that, once a host has been primed by vaccination, a single exposure results in protection equivalent to that produced by natural infection. Again, in infections of much current interest, there is cause to doubt whether the protection engendered by vaccination, even boosted by exposure to circulating pathogen, is equivalent to that produced by natural infection, both in terms of degree and duration of protection.}
+
+\revtext{Finally, in their simulation studies, the authors assume that vaccination is performed once, simultaneously across the population, and at the beginning of the outbreak. Of course, as an idealization, this assumption has value, but one is left to wonder how well the main conclusions hold up under more realistic scenarios.}
+
+\revtext{On a more superficial note, I found the discussion of effectiveness and efficacy to be a bit strange. In particular, the questions that are directly addressed seem somewhat artificial, and the questions I wonder about most are not asked at all.}
+
+\revtext{I had the sense that sufficient information is present that I could probably work out the answers to those questions myself, but only with a good deal of thought. To be more specific, I found myself asking questions such as: If we estimate efficacy or effectiveness but fail to allow for boosting, what mistakes do we make? Given that boosting can happen, are there better or worse ways of quantifying efficacy or effectiveness? To put it another way, these questions are of more immediate interest than is the question of whether, for example, a method of estimating effectiveness gives the “correct” result or not.}
+
+
+
+\revtext{Overall, I believe that the authors are asking some very interesting questions, and that their approach to these questions is fundamentally sound, but that their overly narrow focus reduces the value of the manuscript. Moreover, I have indicated some ways in which the exposition could be improved. At a minimum, one could imagine a robustness study wherein relaxation of the various assumptions I have highlighted above are examined (and doubtless there are others worthy of attention as well). Performed perfunctorily, such efforts are typically of little real value, and once one has made a thorough study, one is usually not very far from much more comprehensive results, the presentation of which can often be more straightforward.}
+
+\revtext{Minor comments:}
+
+\revtext{I found the distinction between history- and status-based models to be unhelpful in this context, and indeed confusing, especially since all the models in question are special cases of a single generalized model.}
+
+We have removed these distinctions.
+
+\revtext{In the caption of Figure 1, some explanation of how the models are related to one another would be helpful. The bold arrows in the diagram are insufficient for this purpose.}
+
+\revtext{I missed discussion of the work of Magpantay and Domenech de Celles, who in a series of papers systematically explored the dynamics of models of vaccine failure, albeit over longer time-scales than those examined here.}
+
+\revtext{Line 130: It is of no interest whether or not a model is “widely used” (whatever that might mean) without an understanding of the purposes for which it has been used and how well it has served these purposes. In other words, model “popularity”, as such, is beneath notice.}
+
+\revtext{Lines 234ff: The language here is imprecise. Specifically, the sentences beginning “[a]s we increase R0, the leaky vaccination model predicts. . . ” and “[a]s we increase V EP (and decrease V EL accordingly). . . ” can be phrased exactly.}
+
+\revtext{Line 242: “...which is measured empirically...” is imprecise. Both efficacy and effectiveness are empirically assessed. It should be possible to meaningfully explain the difference.}
+
+\revtext{Data}
+
+\revtext{Some documentation of the materials on the Github repository is needed. At present, not even a README file is present. Given the relatively straightforward layout and the descriptive file names, a README file should be sufficient for this purpose.}
+
+\revtext{It is worth noting that the simulations on which the results are based would not be particularly challenging or difficult to reproduce based on the purely mathematical descriptions in the text. The results are purely theoretical: there are no true data underlying them.}
+
+\bibliography{immune_boosting}
+
+\end{document}
