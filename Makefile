@@ -18,12 +18,17 @@ Sources += immune_boosting.tex
 
 ## immune_boosting.tex.1322d518.oldfile:
 ## immune_boosting.ld.pdf: immune_boosting.tex
+## jrsi0.pdf: 
+jrsi0.tex: immune_boosting.tex.1322d518.oldfile
+	$(copy)
 
 temp_files: figure_diagram_comb.pdf.op figure_simulation_compare.Rout.tikz.pdf.op figure_simulation_generalized.Rout.vaccinated.tikz.pdf.op figure_simulation_efficacy.Rout.tikz.pdf.op
 
 ######################################################################
 
 ## JRSI reviews
+
+## response.pdf: response.tex
 
 Sources += drop.md
 
